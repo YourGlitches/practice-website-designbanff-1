@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI 창작 세미나 개최 안내 | AI 콘텐츠 창작 협회</title>
+  <meta name="description" content="AI 창작 교육과 콘텐츠 활용 사례를 공유하는 세미나를 준비 중입니다." />
+  <meta property="og:title" content="AI 창작 세미나 개최 안내 | AI 콘텐츠 창작 협회" />
+  <meta property="og:description" content="AI 창작 교육과 콘텐츠 활용 사례를 공유하는 세미나를 준비 중입니다." />
+  <meta property="og:type" content="article" />
+  <style>
+    :root {
+      --black:#000000;
+      --deep:#050505;
+      --white:#ffffff;
+      --soft:#f5f5f7;
+      --gray:#86868b;
+      --gray2:#c7c7cc;
+      --line:rgba(255,255,255,0.16);
+      --line-dark:rgba(0,0,0,0.12);
+      --cyan:#00b8ff;
+      --max:1180px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Pretendard,-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
+      background:var(--black);
+      color:var(--white);
+      line-height:1.65;
+      word-break:keep-all;
+      overflow-x:hidden;
+    }
+    a{color:inherit;text-decoration:none}
+    .top-nav{
+      position:fixed;
+      left:24px;
+      right:24px;
+      top:22px;
+      z-index:9999;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+      padding:14px 18px;
+      border-radius:999px;
+      background:rgba(0,0,0,.34);
+      border:1px solid rgba(255,255,255,.12);
+      backdrop-filter:blur(14px);
+    }
+    .top-logo{
+      color:var(--white);
+      font-size:14px;
+      font-weight:780;
+      letter-spacing:-.04em;
+      white-space:nowrap;
+    }
+    .top-links{display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+    .top-links a{
+      color:rgba(255,255,255,.66);
+      font-size:13px;
+      letter-spacing:-.02em;
+      transition:color .25s ease;
+    }
+    .top-links a:hover{color:var(--cyan)}
+    .detail-hero{
+      min-height:76vh;
+      display:flex;
+      align-items:center;
+      padding:130px 24px 84px;
+      background:
+        radial-gradient(circle at 70% 28%, rgba(0,184,255,.1), transparent 34%),
+        var(--black);
+    }
+    .inner{max-width:var(--max);margin:0 auto;width:100%}
+    .kicker{
+      color:var(--cyan);
+      font-size:13px;
+      font-weight:850;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      margin-bottom:28px;
+    }
+    .detail-title{
+      max-width:980px;
+      font-size:clamp(54px,8vw,122px);
+      line-height:.95;
+      letter-spacing:-.085em;
+      font-weight:860;
+      margin-bottom:28px;
+    }
+    .detail-desc{
+      max-width:760px;
+      color:var(--gray2);
+      font-size:clamp(18px,2vw,26px);
+      line-height:1.62;
+      letter-spacing:-.035em;
+    }
+    .content{
+      background:var(--soft);
+      color:var(--black);
+      padding:120px 24px;
+    }
+    .content-grid{
+      display:grid;
+      gap:0;
+      border-top:1px solid var(--line-dark);
+    }
+    .content-row{
+      display:grid;
+      grid-template-columns:.36fr 1fr;
+      gap:56px;
+      padding:42px 0;
+      border-bottom:1px solid var(--line-dark);
+    }
+    .content-no{
+      color:var(--cyan);
+      font-size:13px;
+      font-weight:850;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+    }
+    .content-title{
+      font-size:clamp(30px,3.4vw,52px);
+      line-height:1.08;
+      letter-spacing:-.065em;
+      font-weight:820;
+      margin-bottom:20px;
+    }
+    .content-body{
+      color:#424245;
+      font-size:18px;
+      line-height:1.86;
+    }
+    .content-body ul{
+      list-style:none;
+      display:grid;
+      gap:10px;
+    }
+    .content-body li::before{
+      content:"—";
+      color:var(--cyan);
+      margin-right:10px;
+    }
+    .related{
+      background:var(--black);
+      color:var(--white);
+      padding:110px 24px;
+    }
+    .related-grid{
+      display:grid;
+      grid-template-columns:.36fr 1fr;
+      gap:56px;
+      align-items:start;
+    }
+    .related-links{
+      display:grid;
+      border-top:1px solid var(--line);
+    }
+    .related-links a{
+      display:flex;
+      justify-content:space-between;
+      gap:24px;
+      padding:24px 0;
+      border-bottom:1px solid var(--line);
+      color:var(--white);
+      font-size:22px;
+      letter-spacing:-.045em;
+      font-weight:760;
+      transition:color .25s ease,padding .25s ease;
+    }
+    .related-links a::after{content:"↗";font-size:16px;color:var(--cyan)}
+    .related-links a:hover{color:var(--cyan);padding-left:18px}
+    .home-link{
+      margin-top:34px;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      color:var(--cyan);
+      font-size:15px;
+      font-weight:760;
+    }
+    .footer{
+      background:var(--black);
+      color:var(--gray2);
+      border-top:1px solid var(--line);
+      padding:14px 24px;
+      font-size:12px;
+    }
+    .footer-inner{
+      max-width:var(--max);
+      margin:0 auto;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:24px;
+    }
+    .footer a{color:var(--gray2)}
+    .footer a:hover{color:var(--cyan)}
+    @media(max-width:900px){
+      .top-nav{left:14px;right:14px;top:14px;border-radius:24px;align-items:flex-start}
+      .top-links{gap:10px}
+      .top-links a{font-size:12px}
+      .detail-hero{min-height:70vh;padding:120px 20px 70px}
+      .content,.related{padding:86px 20px}
+      .content-row,.related-grid{grid-template-columns:1fr;gap:18px}
+      .footer-inner{flex-direction:column;align-items:flex-start}
+    }
+    @media(max-width:640px){
+      .top-nav{position:absolute}
+      .detail-title{font-size:52px}
+      .detail-desc{font-size:18px}
+      .content-title{font-size:34px}
+      .related-links a{font-size:19px}
+    }
+    @media(prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      *,*::before,*::after{
+        animation-duration:.001ms!important;
+        animation-iteration-count:1!important;
+        transition-duration:.001ms!important;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <nav class="top-nav" aria-label="상세 페이지 상단 메뉴">
+    <a class="top-logo" href="index.html">AI 콘텐츠 창작 협회</a>
+    <div class="top-links">
+      <a href="index.html#education">Education</a>
+      <a href="index.html#news">News</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="index.html">Home</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="detail-hero">
+      <div class="inner">
+        <div class="kicker">News / Notice</div>
+        <h1 class="detail-title">AI 창작 세미나 개최 안내</h1>
+        <p class="detail-desc">AI 창작 교육과 콘텐츠 활용 사례를 공유하는 세미나를 준비 중입니다.</p>
+      </div>
+    </section>
+
+    <section class="content">
+      <div class="inner">
+        <div class="content-grid">
+          <div class="content-row">
+            <div class="content-no">01 / Notice</div>
+            <div>
+              <h2 class="content-title">안내</h2>
+              <div class="content-body">
+                <p>AI 콘텐츠 창작 협회는 AI 창작 교육과 콘텐츠 활용 사례를 공유하는 세미나를 준비하고 있습니다.</p>
+              </div>
+            </div>
+          </div>
+          <div class="content-row">
+            <div class="content-no">02 / Program</div>
+            <div>
+              <h2 class="content-title">프로그램</h2>
+              <div class="content-body">
+                <p>세미나는 AI 창작 흐름, 교육 현장 적용 사례, 윤리와 저작권 이슈, 창작 결과물 공유를 중심으로 구성될 예정입니다.</p>
+              </div>
+            </div>
+          </div>
+          <div class="content-row">
+            <div class="content-no">03 / Details</div>
+            <div>
+              <h2 class="content-title">세부 정보</h2>
+              <div class="content-body">
+                <p>일정, 장소, 참여 방법은 확정 후 안내됩니다.</p>
+              </div>
+            </div>
+          </div>
+          <div class="content-row">
+            <div class="content-no">04 / Contact</div>
+            <div>
+              <h2 class="content-title">문의</h2>
+              <div class="content-body">
+                <p>세미나 참여 또는 협력 문의는 협회 이메일을 통해 확인할 수 있습니다.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="related">
+      <div class="inner related-grid">
+        <div>
+          <div class="kicker">Related Pages</div>
+          <a class="home-link" href="index.html">← Back to Home</a>
+        </div>
+        <div class="related-links">
+          <a href="news-exhibition.html">생성AI 예술 작품전 초청</a>
+          <a href="news-newsletter.html">AI 콘텐츠 창작 협회 활동 소식</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>Contact / <a href="mailto:YOUR_EMAIL">YOUR_EMAIL</a> / YOUR_PHONE / YOUR_ADDRESS</div>
+      <div>© 2026 AI Content Creation Association.</div>
+    </div>
+  </footer>
+</body>
+</html>

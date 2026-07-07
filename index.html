@@ -3,644 +3,293 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>제2회 2026 대한민국 AI 창조공모대전</title>
+  <title>AI 콘텐츠 창작 협회 | AI Content Creation Association</title>
+  <meta name="description" content="AI 콘텐츠 창작 협회 공식 홈페이지. AI 교육, 창작, 전시, 공모전, 커뮤니티 활동을 소개합니다." />
+  <meta property="og:title" content="AI 콘텐츠 창작 협회" />
+  <meta property="og:description" content="AI와 함께 창작하는 콘텐츠, 함께 여는 새로운 미래" />
+  <meta property="og:type" content="website" />
 
   <style>
     :root {
-      --bg: #050505;
-      --bg-2: #0b0d10;
-      --panel: rgba(255, 255, 255, 0.045);
-      --panel-strong: rgba(255, 255, 255, 0.075);
-      --line: rgba(244, 241, 234, 0.14);
-      --line-strong: rgba(244, 241, 234, 0.24);
-      --text: #f4f1ea;
-      --muted: #a8a29a;
-      --muted-2: #6f7476;
-      --amber: #f28c28;
-      --amber-2: #ffb000;
-      --burnt: #c75b12;
-      --cyan: #4fb3bf;
-      --bluegray: #6e7f80;
-      --max: 1160px;
-      --radius: 22px;
+      --black: #000000;
+      --deep: #050505;
+      --dark-hover: #111111;
+      --white: #ffffff;
+      --soft: #f5f5f7;
+      --gray: #86868b;
+      --gray2: #c7c7cc;
+      --line: rgba(255,255,255,0.16);
+      --line-dark: rgba(0,0,0,0.12);
+      --cyan: #00b8ff;
+      --max: 1180px;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body {
-      font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--bg);
-      color: var(--text);
+      font-family: Pretendard, -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+      background: var(--black);
+      color: var(--white);
       line-height: 1.65;
-      overflow-x: hidden;
       word-break: keep-all;
+      overflow-x: hidden;
     }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; border: 0; background: none; color: inherit; cursor: pointer; }
 
-    body::before {
-      content: "";
+    .hero-top-nav {
       position: fixed;
-      inset: 0;
-      z-index: -3;
-      background:
-        radial-gradient(circle at 50% 0%, rgba(242, 140, 40, 0.15), transparent 34%),
-        radial-gradient(circle at 85% 16%, rgba(79, 179, 191, 0.08), transparent 30%),
-        linear-gradient(180deg, #050505 0%, #0b0d10 52%, #050505 100%);
-    }
-
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -2;
-      pointer-events: none;
-      opacity: 0.05;
-      background-image:
-        linear-gradient(rgba(244, 241, 234, 0.3) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(244, 241, 234, 0.3) 1px, transparent 1px);
-      background-size: 44px 44px;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button {
-      font-family: inherit;
-    }
-
-    .site-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 100;
-      opacity: 0;
-      transform: translateY(-100%);
-      transition: opacity 0.35s ease, transform 0.35s ease;
-      background: rgba(5, 5, 5, 0.76);
-      border-bottom: 1px solid rgba(244, 241, 234, 0.1);
-      backdrop-filter: blur(16px);
-    }
-
-    .site-header.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .nav {
-      max-width: var(--max);
-      height: 68px;
-      margin: 0 auto;
-      padding: 0 24px;
+      left: 24px;
+      right: 24px;
+      top: 22px;
+      z-index: 9999;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 24px;
+      padding: 14px 18px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.22);
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(14px);
+      transition: opacity 0.35s ease, transform 0.35s ease, pointer-events 0.35s ease;
     }
 
-    .logo {
-      font-size: 15px;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      color: var(--text);
+    .hero-top-nav.hidden {
+      opacity: 0;
+      transform: translateY(-16px);
+      pointer-events: none;
     }
 
-    .nav-menu {
+    .top-logo {
+      font-size: 14px;
+      font-weight: 780;
+      letter-spacing: -0.04em;
+      color: var(--white);
+      white-space: nowrap;
+    }
+
+    .top-links {
       display: flex;
+      gap: 18px;
       align-items: center;
-      gap: 22px;
-      font-size: 13px;
-      color: var(--muted);
+      flex-wrap: wrap;
+      justify-content: flex-end;
     }
 
-    .nav-menu a {
+    .top-links a {
+      color: rgba(255,255,255,0.66);
+      font-size: 13px;
+      letter-spacing: -0.02em;
       transition: color 0.25s ease;
     }
 
-    .nav-menu a:hover {
-      color: var(--amber-2);
+    .top-links a:hover {
+      color: var(--cyan);
     }
 
-    .nav-cta {
-      padding: 9px 15px;
-      border: 1px solid rgba(242, 140, 40, 0.45);
-      border-radius: 999px;
-      color: var(--amber-2);
+    .right-nav {
+      position: fixed;
+      right: 22px;
+      top: 50%;
+      transform: translateY(-50%) translateX(24px);
+      z-index: 9999;
+      width: 220px;
+      opacity: 0;
+      pointer-events: none;
+      padding: 16px 14px;
+      border-radius: 24px;
+      background: rgba(0,0,0,0.18);
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
+      transition: opacity 0.35s ease, transform 0.35s ease, background 0.25s ease;
     }
 
-    .mobile-toggle {
-      display: none;
-      width: 40px;
-      height: 40px;
-      border: 1px solid var(--line);
+    .right-nav.visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(-50%) translateX(0);
+    }
+
+    .right-nav ul {
+      list-style: none;
+      display: grid;
+      gap: 16px;
+    }
+
+    .right-nav a {
+      display: grid;
+      grid-template-columns: 1fr 32px 10px;
+      align-items: center;
+      gap: 10px;
+      min-height: 22px;
+      color: rgba(255,255,255,0.3);
+      font-size: 14px;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .right-nav .label {
+      opacity: 0;
+      transform: translateX(8px);
+      transition: opacity 0.25s ease, transform 0.25s ease, color 0.25s ease;
+    }
+
+    .right-nav:hover .label,
+    .right-nav a.active .label {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .right-nav .num {
+      font-size: 13px;
+      color: rgba(255,255,255,0.34);
+      transition: color 0.25s ease;
+    }
+
+    .right-nav .dot {
+      width: 9px;
+      height: 9px;
       border-radius: 50%;
-      background: transparent;
-      color: var(--text);
-      cursor: pointer;
+      background: rgba(255,255,255,0.22);
+      transition: background 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .right-nav.light-mode {
+      background: rgba(255,255,255,0.3);
+      border-color: rgba(0,0,0,0.08);
+    }
+
+    .right-nav.light-mode .num {
+      color: rgba(0,0,0,0.42);
+    }
+
+    .right-nav.light-mode .dot {
+      background: rgba(0,0,0,0.26);
+    }
+
+    .right-nav.light-mode a {
+      color: rgba(0,0,0,0.42);
+    }
+
+    .right-nav.overlay-dark {
+      background: rgba(0,0,0,0.34);
+      border-color: rgba(255,255,255,0.1);
+    }
+
+    .right-nav.overlay-dark a,
+    .right-nav.overlay-dark .num {
+      color: rgba(255,255,255,0.78);
+    }
+
+    .right-nav.overlay-dark .dot {
+      background: rgba(255,255,255,0.72);
+    }
+
+    .right-nav a.active .label,
+    .right-nav a.active .num,
+    .right-nav.overlay-dark a.active .label,
+    .right-nav.overlay-dark a.active .num {
+      color: var(--cyan);
+    }
+
+    .right-nav a.active .dot,
+    .right-nav.overlay-dark a.active .dot {
+      background: var(--cyan);
+      box-shadow: 0 0 14px rgba(0,184,255,0.6);
+    }
+
+    .right-nav a:hover .label,
+    .right-nav a:hover .num {
+      color: var(--cyan);
+    }
+
+    .right-nav a:hover .dot {
+      background: var(--cyan);
+    }
+
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      left: 14px;
+      right: 14px;
+      bottom: 14px;
+      z-index: 9999;
+      padding: 10px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.72);
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(18px);
+      overflow-x: auto;
+      gap: 8px;
+    }
+
+    .mobile-nav a {
+      flex: 0 0 auto;
+      padding: 9px 13px;
+      border-radius: 999px;
+      color: var(--gray2);
+      font-size: 12px;
+      background: rgba(255,255,255,0.06);
+    }
+
+    .mobile-nav a.active {
+      background: var(--cyan);
+      color: var(--black);
     }
 
     .hero {
       min-height: 100vh;
-      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 80px 24px 56px;
+      padding: 120px 24px 90px;
+      position: relative;
       overflow: hidden;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      width: 56vw;
-      height: 56vw;
-      max-width: 740px;
-      max-height: 740px;
-      border-radius: 50%;
       background:
-        radial-gradient(circle, rgba(242, 140, 40, 0.16), transparent 58%),
-        radial-gradient(circle, rgba(79, 179, 191, 0.08), transparent 72%);
-      filter: blur(18px);
-      opacity: 0.9;
+        radial-gradient(circle at 50% 34%, rgba(0,184,255,0.08), transparent 36%),
+        var(--black);
     }
 
     .hero-inner {
-      position: relative;
-      z-index: 2;
       width: 100%;
       max-width: var(--max);
-      margin: 0 auto;
+      min-height: 620px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      text-align: center;
-    }
-
-    .hero-visual {
-      width: min(72vw, 560px);
-      height: min(72vw, 560px);
-      max-height: 560px;
-      min-height: 360px;
-      display: flex;
-      align-items: center;
       justify-content: center;
-      perspective: 1200px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-kicker {
+      color: var(--cyan);
+      font-size: 13px;
+      font-weight: 850;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
       margin-bottom: 28px;
-      position: relative;
-    }
-
-    .art-object {
-      width: min(68vw, 430px);
-      height: min(68vw, 430px);
-      max-width: 430px;
-      max-height: 430px;
-      position: relative;
-      transform-style: preserve-3d;
-      animation: objectFloat 7s ease-in-out infinite;
-      filter: drop-shadow(0 36px 80px rgba(0, 0, 0, 0.62));
-    }
-
-    @keyframes objectFloat {
-      0%, 100% {
-        transform: rotateX(58deg) rotateZ(-28deg) translateY(0);
-      }
-      50% {
-        transform: rotateX(60deg) rotateZ(-20deg) translateY(-18px);
-      }
-    }
-
-    .poly-piece {
-      position: absolute;
-      overflow: hidden;
-      background:
-        linear-gradient(135deg, rgba(255, 176, 0, 0.92), rgba(199, 91, 18, 0.78)),
-        #141414;
-      border: 1px solid rgba(244, 241, 234, 0.18);
-      box-shadow:
-        inset 0 0 18px rgba(255, 255, 255, 0.08),
-        0 22px 40px rgba(0, 0, 0, 0.35);
-      transform-style: preserve-3d;
-    }
-
-    .poly-piece::before {
-      content: "function dream(){ return AI + ART; } 0101 const image = prompt(); render.form(); <canvas> data █ ▓ ▒ #FFB000 matrix vector vertex fragment shader";
-      position: absolute;
-      inset: -40%;
-      color: rgba(5, 5, 5, 0.58);
-      font-family: "SFMono-Regular", Consolas, monospace;
-      font-size: 12px;
-      line-height: 1.8;
-      letter-spacing: 0.08em;
-      transform: rotate(-24deg);
-      white-space: pre-wrap;
-      animation: codeDrift 13s linear infinite;
-      mix-blend-mode: multiply;
-    }
-
-    .poly-piece::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(120deg, rgba(255,255,255,0.28), transparent 34%),
-        linear-gradient(300deg, rgba(79,179,191,0.18), transparent 45%);
-      pointer-events: none;
-    }
-
-    @keyframes codeDrift {
-      0% {
-        transform: translate(-8%, -6%) rotate(-24deg);
-      }
-      100% {
-        transform: translate(8%, 6%) rotate(-24deg);
-      }
-    }
-
-    .art-object.variant-0 .p1 {
-      width: 42%;
-      height: 54%;
-      left: 29%;
-      top: 4%;
-      clip-path: polygon(44% 0, 86% 13%, 100% 70%, 59% 100%, 13% 83%, 0 26%);
-      transform: translateZ(90px);
-      background:
-        linear-gradient(135deg, rgba(255, 176, 0, 0.95), rgba(199, 91, 18, 0.82)),
-        #222;
-    }
-
-    .art-object.variant-0 .p2 {
-      width: 62%;
-      height: 32%;
-      left: 18%;
-      top: 44%;
-      clip-path: polygon(7% 26%, 44% 0, 93% 18%, 100% 72%, 47% 100%, 0 78%);
-      transform: translateZ(54px);
-      background:
-        linear-gradient(135deg, rgba(242, 140, 40, 0.9), rgba(79, 179, 191, 0.45)),
-        #222;
-    }
-
-    .art-object.variant-0 .p3 {
-      width: 26%;
-      height: 28%;
-      left: 17%;
-      top: 24%;
-      clip-path: polygon(12% 8%, 96% 0, 83% 100%, 0 77%);
-      transform: translateZ(120px);
-      background:
-        linear-gradient(135deg, rgba(79, 179, 191, 0.86), rgba(242, 140, 40, 0.72)),
-        #222;
-    }
-
-    .art-object.variant-0 .p4 {
-      width: 28%;
-      height: 34%;
-      right: 13%;
-      top: 22%;
-      clip-path: polygon(0 0, 86% 14%, 100% 82%, 12% 100%);
-      transform: translateZ(118px);
-      background:
-        linear-gradient(135deg, rgba(255, 176, 0, 0.86), rgba(244, 241, 234, 0.28)),
-        #222;
-    }
-
-    .art-object.variant-0 .p5 {
-      width: 34%;
-      height: 22%;
-      left: 34%;
-      bottom: 9%;
-      clip-path: polygon(10% 3%, 92% 0, 100% 70%, 45% 100%, 0 72%);
-      transform: translateZ(76px);
-      background:
-        linear-gradient(135deg, rgba(199, 91, 18, 0.9), rgba(255, 176, 0, 0.62)),
-        #222;
-    }
-
-    .art-object.variant-1 .p1 {
-      width: 36%;
-      height: 66%;
-      left: 32%;
-      top: 3%;
-      border-radius: 42% 42% 36% 36%;
-      clip-path: polygon(50% 0, 84% 12%, 98% 44%, 88% 78%, 50% 100%, 14% 80%, 0 43%, 16% 12%);
-      transform: translateZ(120px);
-      background:
-        linear-gradient(135deg, rgba(244, 241, 234, 0.82), rgba(199, 91, 18, 0.78)),
-        #222;
-    }
-
-    .art-object.variant-1 .p2 {
-      width: 62%;
-      height: 42%;
-      left: 18%;
-      top: 40%;
-      clip-path: polygon(14% 5%, 84% 0, 100% 78%, 67% 100%, 0 72%);
-      transform: translateZ(58px);
-      background:
-        linear-gradient(135deg, rgba(199, 91, 18, 0.86), rgba(35, 25, 18, 0.96)),
-        #222;
-    }
-
-    .art-object.variant-1 .p3 {
-      width: 22%;
-      height: 25%;
-      left: 22%;
-      top: 26%;
-      clip-path: polygon(0 12%, 100% 0, 82% 94%, 18% 100%);
-      transform: translateZ(150px);
-      background:
-        linear-gradient(135deg, rgba(79, 179, 191, 0.66), rgba(255, 176, 0, 0.54)),
-        #222;
-    }
-
-    .art-object.variant-1 .p4 {
-      width: 24%;
-      height: 25%;
-      right: 22%;
-      top: 26%;
-      clip-path: polygon(8% 0, 100% 14%, 80% 100%, 0 86%);
-      transform: translateZ(150px);
-      background:
-        linear-gradient(135deg, rgba(242, 140, 40, 0.72), rgba(244, 241, 234, 0.34)),
-        #222;
-    }
-
-    .art-object.variant-1 .p5 {
-      width: 44%;
-      height: 16%;
-      left: 28%;
-      bottom: 12%;
-      clip-path: polygon(4% 26%, 90% 0, 100% 70%, 38% 100%, 0 82%);
-      transform: translateZ(82px);
-      background:
-        linear-gradient(135deg, rgba(255, 176, 0, 0.72), rgba(79, 179, 191, 0.38)),
-        #222;
-    }
-
-    .art-object.variant-2 .p1 {
-      width: 70%;
-      height: 24%;
-      left: 15%;
-      top: 18%;
-      clip-path: polygon(0 52%, 18% 18%, 38% 42%, 58% 0, 80% 34%, 100% 12%, 92% 100%, 4% 88%);
-      transform: translateZ(90px);
-      background:
-        linear-gradient(135deg, rgba(79, 179, 191, 0.78), rgba(255, 176, 0, 0.55)),
-        #222;
-    }
-
-    .art-object.variant-2 .p2 {
-      width: 82%;
-      height: 26%;
-      left: 8%;
-      top: 41%;
-      clip-path: polygon(0 70%, 18% 14%, 36% 74%, 58% 18%, 78% 66%, 100% 10%, 94% 100%, 6% 100%);
-      transform: translateZ(70px);
-      background:
-        linear-gradient(135deg, rgba(242, 140, 40, 0.9), rgba(79, 179, 191, 0.48)),
-        #222;
-    }
-
-    .art-object.variant-2 .p3 {
-      width: 64%;
-      height: 20%;
-      left: 18%;
-      bottom: 15%;
-      clip-path: polygon(0 50%, 20% 0, 42% 60%, 60% 10%, 84% 54%, 100% 24%, 94% 100%, 8% 90%);
-      transform: translateZ(45px);
-      background:
-        linear-gradient(135deg, rgba(199, 91, 18, 0.8), rgba(255, 176, 0, 0.66)),
-        #222;
-    }
-
-    .art-object.variant-2 .p4 {
-      width: 20%;
-      height: 36%;
-      left: 26%;
-      top: 9%;
-      clip-path: polygon(34% 0, 100% 44%, 68% 100%, 0 64%);
-      transform: translateZ(132px);
-      background:
-        linear-gradient(135deg, rgba(244, 241, 234, 0.65), rgba(79, 179, 191, 0.62)),
-        #222;
-    }
-
-    .art-object.variant-2 .p5 {
-      width: 20%;
-      height: 32%;
-      right: 24%;
-      top: 14%;
-      clip-path: polygon(0 34%, 66% 0, 100% 76%, 32% 100%);
-      transform: translateZ(124px);
-      background:
-        linear-gradient(135deg, rgba(255, 176, 0, 0.75), rgba(199, 91, 18, 0.58)),
-        #222;
-    }
-
-    .art-object.variant-3 .p1 {
-      width: 56%;
-      height: 56%;
-      left: 22%;
-      top: 10%;
-      border-radius: 50%;
-      clip-path: polygon(50% 0, 66% 24%, 94% 20%, 76% 48%, 100% 66%, 66% 72%, 50% 100%, 34% 72%, 0 66%, 24% 48%, 6% 20%, 34% 24%);
-      transform: translateZ(118px);
-      background:
-        linear-gradient(135deg, rgba(255, 176, 0, 0.9), rgba(242, 140, 40, 0.6)),
-        #222;
-    }
-
-    .art-object.variant-3 .p2 {
-      width: 84%;
-      height: 22%;
-      left: 8%;
-      bottom: 17%;
-      clip-path: polygon(3% 30%, 40% 0, 94% 20%, 100% 74%, 62% 100%, 0 82%);
-      transform: translateZ(50px);
-      background:
-        linear-gradient(135deg, rgba(199, 91, 18, 0.74), rgba(79, 179, 191, 0.5)),
-        #222;
-    }
-
-    .art-object.variant-3 .p3 {
-      width: 26%;
-      height: 24%;
-      left: 18%;
-      top: 28%;
-      clip-path: polygon(10% 8%, 100% 0, 88% 88%, 0 100%);
-      transform: translateZ(150px);
-      background:
-        linear-gradient(135deg, rgba(79, 179, 191, 0.82), rgba(244, 241, 234, 0.22)),
-        #222;
-    }
-
-    .art-object.variant-3 .p4 {
-      width: 26%;
-      height: 24%;
-      right: 18%;
-      top: 28%;
-      clip-path: polygon(0 0, 90% 8%, 100% 100%, 12% 88%);
-      transform: translateZ(150px);
-      background:
-        linear-gradient(135deg, rgba(242, 140, 40, 0.78), rgba(244, 241, 234, 0.22)),
-        #222;
-    }
-
-    .art-object.variant-3 .p5 {
-      width: 32%;
-      height: 18%;
-      left: 34%;
-      top: 57%;
-      clip-path: polygon(0 20%, 100% 0, 84% 80%, 20% 100%);
-      transform: translateZ(136px);
-      background:
-        linear-gradient(135deg, rgba(255, 176, 0, 0.78), rgba(199, 91, 18, 0.78)),
-        #222;
-    }
-
-    .art-object.transitioning .poly-piece::before {
-      animation: codeDissolve 0.95s ease forwards;
-    }
-
-    .art-object.transitioning .poly-piece {
-      animation: pieceDissolve 0.95s ease forwards;
-    }
-
-    @keyframes codeDissolve {
-      0% {
-        opacity: 1;
-        filter: blur(0);
-        letter-spacing: 0.08em;
-      }
-      100% {
-        opacity: 0;
-        filter: blur(8px);
-        letter-spacing: 0.55em;
-      }
-    }
-
-    @keyframes pieceDissolve {
-      0% {
-        opacity: 1;
-        transform: translateZ(var(--z, 90px)) scale(1);
-      }
-      100% {
-        opacity: 0.12;
-        transform: translateZ(var(--z, 90px)) scale(0.94);
-      }
     }
 
     .hero-title {
-      font-size: clamp(25px, 3.3vw, 44px);
-      line-height: 1.18;
-      letter-spacing: -0.055em;
-      font-weight: 760;
-      margin-bottom: 14px;
+      font-size: clamp(64px, 11vw, 154px);
+      line-height: 0.9;
+      letter-spacing: -0.095em;
+      font-weight: 880;
+      margin-bottom: 28px;
     }
 
-    .hero-desc {
-      max-width: 680px;
-      margin: 0 auto;
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.8;
-    }
-
-    .hero-buttons {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 28px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 44px;
-      padding: 0 18px;
-      border-radius: 999px;
-      font-size: 14px;
-      font-weight: 700;
-      transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
-      cursor: pointer;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-    }
-
-    .btn-primary {
-      background: var(--amber);
-      color: #090909;
-      border: 1px solid var(--amber);
-    }
-
-    .btn-secondary {
-      border: 1px solid var(--line-strong);
-      color: var(--text);
-      background: rgba(255, 255, 255, 0.02);
-    }
-
-    .hero-meta {
-      margin-top: 34px;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 12px 22px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .hero-meta span {
-      position: relative;
-      padding-right: 22px;
-    }
-
-    .hero-meta span:not(:last-child)::after {
-      content: "";
-      position: absolute;
-      right: 0;
-      top: 50%;
-      width: 1px;
-      height: 12px;
-      transform: translateY(-50%);
-      background: rgba(244, 241, 234, 0.22);
-    }
-
-    .scroll-indicator {
-      position: absolute;
-      left: 50%;
-      bottom: 24px;
-      transform: translateX(-50%);
-      color: var(--muted-2);
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-    }
-
-    .scroll-indicator::after {
-      content: "";
-      display: block;
-      width: 1px;
-      height: 34px;
-      margin: 8px auto 0;
-      background: linear-gradient(var(--amber), transparent);
-      opacity: 0.75;
+    .hero-title-en {
+      color: var(--gray);
+      font-size: clamp(17px, 1.65vw, 24px);
+      letter-spacing: -0.02em;
     }
 
     section {
-      padding: 105px 24px;
       position: relative;
+      padding: 130px 24px;
     }
 
     .section-inner {
@@ -648,310 +297,667 @@
       margin: 0 auto;
     }
 
-    .section-label {
-      color: var(--amber-2);
-      font-size: 12px;
+    .light {
+      background: var(--soft);
+      color: var(--black);
+    }
+
+    .dark {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 0.36fr 1fr;
+      gap: 56px;
+      align-items: start;
+      margin-bottom: 56px;
+    }
+
+    .section-no {
+      color: var(--cyan);
+      font-size: 13px;
       font-weight: 800;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      margin-bottom: 14px;
     }
 
     .section-title {
-      font-size: clamp(34px, 5vw, 66px);
-      line-height: 1.02;
+      font-size: clamp(38px, 5vw, 70px);
+      line-height: 1.04;
+      letter-spacing: -0.07em;
+      font-weight: 840;
+    }
+
+    .about-text {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 56px;
+      align-items: start;
+      border-top: 1px solid var(--line-dark);
+      padding-top: 44px;
+    }
+
+    .about-lead {
+      font-size: clamp(28px, 3.8vw, 52px);
+      line-height: 1.16;
       letter-spacing: -0.06em;
-      margin-bottom: 24px;
       font-weight: 780;
     }
 
-    .section-desc {
-      max-width: 780px;
-      color: var(--muted);
-      font-size: 17px;
-      line-height: 1.85;
-    }
-
-    .grid {
-      display: grid;
-      gap: 16px;
-      margin-top: 42px;
-    }
-
-    .grid-3 {
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    .grid-2 {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .card {
-      border: 1px solid var(--line);
-      background: var(--panel);
-      border-radius: var(--radius);
-      padding: 28px;
-      min-height: 176px;
-    }
-
-    .card h3 {
-      font-size: 21px;
-      margin-bottom: 12px;
-      letter-spacing: -0.035em;
-    }
-
-    .card p,
-    .card li {
-      color: var(--muted);
-      font-size: 15px;
-    }
-
-    .card ul {
-      list-style: none;
-      display: grid;
-      gap: 8px;
-    }
-
-    .theme-number,
-    .award-rank {
-      color: var(--cyan);
-      font-size: 12px;
-      font-weight: 900;
-      letter-spacing: 0.12em;
-      margin-bottom: 18px;
-    }
-
-    .tag-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 18px;
-    }
-
-    .tag {
-      display: inline-flex;
-      padding: 7px 11px;
-      border: 1px solid rgba(79, 179, 191, 0.34);
-      border-radius: 999px;
-      color: var(--cyan);
-      background: rgba(79, 179, 191, 0.045);
-      font-size: 13px;
-    }
-
-    .timeline {
-      margin-top: 48px;
-      border-left: 1px solid rgba(242, 140, 40, 0.36);
+    .about-body {
       display: grid;
       gap: 22px;
-      padding-left: 28px;
+      color: #424245;
+      font-size: 18px;
+      line-height: 1.95;
     }
 
-    .timeline-item {
-      position: relative;
+    .history-timeline {
+      border-top: 1px solid var(--line);
+    }
+
+    .history-group {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .history-toggle {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 0.36fr 1fr 48px;
+      gap: 56px;
+      align-items: center;
+      padding: 34px 0;
+      text-align: left;
+    }
+
+    .history-year {
+      font-size: clamp(46px, 6vw, 78px);
+      line-height: 0.95;
+      letter-spacing: -0.075em;
+      font-weight: 840;
+      color: var(--white);
+    }
+
+    .history-summary {
+      color: var(--gray2);
+      font-size: 18px;
+    }
+
+    .history-icon {
+      width: 42px;
+      height: 42px;
       border: 1px solid var(--line);
-      background: var(--panel);
-      border-radius: 20px;
-      padding: 22px 24px;
-    }
-
-    .timeline-item::before {
-      content: "";
-      position: absolute;
-      left: -35px;
-      top: 28px;
-      width: 12px;
-      height: 12px;
       border-radius: 50%;
-      background: var(--amber);
-      box-shadow: 0 0 18px rgba(242, 140, 40, 0.45);
+      display: grid;
+      place-items: center;
+      color: var(--cyan);
+      font-size: 22px;
+      transition: transform 0.25s ease;
     }
 
-    .timeline-date {
-      color: var(--amber-2);
-      font-size: 14px;
-      font-weight: 800;
+    .history-group.open .history-icon {
+      transform: rotate(45deg);
+    }
+
+    .history-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.42s ease;
+    }
+
+    .history-group.open .history-panel {
+      max-height: 900px;
+    }
+
+    .history-items {
+      display: grid;
+      gap: 0;
+      margin-left: calc(36% + 56px);
+      padding-bottom: 38px;
+    }
+
+    .history-item {
+      display: grid;
+      grid-template-columns: 0.28fr 1fr;
+      gap: 28px;
+      padding: 22px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .history-label {
+      color: var(--cyan);
+      font-size: 13px;
+      font-weight: 850;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .history-title {
+      font-size: 22px;
+      letter-spacing: -0.045em;
+      font-weight: 760;
       margin-bottom: 6px;
     }
 
-    .timeline-title {
-      font-size: 20px;
-      font-weight: 800;
-      margin-bottom: 4px;
+    .history-desc {
+      color: var(--gray2);
+      font-size: 16px;
     }
 
-    .timeline-text {
-      color: var(--muted);
-      font-size: 15px;
-    }
-
-    .location-box {
-      margin-top: 26px;
-      padding: 26px;
-      border-radius: var(--radius);
-      border: 1px solid var(--line);
-      background: var(--panel);
-    }
-
-    .location-box h3 {
-      font-size: 23px;
-      margin-bottom: 8px;
-    }
-
-    .location-box p {
-      color: var(--muted);
-    }
-
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-top: 42px;
-      counter-reset: step;
-    }
-
-    .step {
-      counter-increment: step;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: var(--panel);
-      padding: 28px;
-      min-height: 205px;
-    }
-
-    .step::before {
-      content: "0" counter(step);
-      display: block;
-      color: var(--amber-2);
-      font-weight: 900;
-      margin-bottom: 22px;
-    }
-
-    .step h3 {
-      font-size: 21px;
-      margin-bottom: 10px;
-    }
-
-    .step p {
-      color: var(--muted);
-      font-size: 15px;
-    }
-
-    .spec-list {
-      display: grid;
-      gap: 10px;
-      margin-top: 18px;
-    }
-
-    .spec-row {
+    .vision {
+      min-height: 76vh;
       display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 12px 0;
-      border-bottom: 1px solid rgba(244, 241, 234, 0.09);
-      color: var(--muted);
-      font-size: 15px;
-    }
-
-    .spec-row strong {
-      color: var(--text);
-      min-width: 96px;
-    }
-
-    .judge-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 40px;
-    }
-
-    .judge-item {
-      padding: 11px 15px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.025);
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .award-card {
-      min-height: auto;
-    }
-
-    .award-prize {
-      font-size: 25px;
-      font-weight: 820;
-      letter-spacing: -0.04em;
-      margin-bottom: 8px;
-    }
-
-    .award-info {
-      color: var(--muted);
-      font-size: 15px;
-    }
-
-    .notice {
-      display: grid;
-      gap: 12px;
-      margin-top: 40px;
-    }
-
-    .notice li {
-      list-style: none;
-      padding: 17px 20px 17px 46px;
-      border: 1px solid var(--line);
-      border-radius: 17px;
-      background: var(--panel);
-      color: var(--muted);
-      position: relative;
-    }
-
-    .notice li::before {
-      content: "!";
-      position: absolute;
-      left: 17px;
-      top: 18px;
-      width: 19px;
-      height: 19px;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      border: 1px solid rgba(242, 140, 40, 0.42);
-      color: var(--amber-2);
-      font-size: 11px;
-      font-weight: 900;
-    }
-
-    .cta {
+      align-items: center;
+      justify-content: center;
       text-align: center;
+      overflow: hidden;
     }
 
-    .cta-card {
-      max-width: 900px;
+    .vision h2 {
+      max-width: 1100px;
+      font-size: clamp(48px, 8.5vw, 128px);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+      font-weight: 360;
+    }
+
+    .vision strong {
+      color: var(--cyan);
+      font-weight: 760;
+    }
+
+    .activities {
+      min-height: 430vh;
+      padding: 130px 24px 0;
+      background: var(--soft);
+      color: var(--black);
+    }
+
+    .activity-sticky {
+      position: sticky;
+      top: 0;
+      min-height: 100vh;
+      max-width: var(--max);
       margin: 0 auto;
-      border: 1px solid rgba(242, 140, 40, 0.3);
-      background: rgba(255, 255, 255, 0.035);
-      border-radius: 30px;
-      padding: 64px 34px;
+      display: grid;
+      grid-template-columns: 0.42fr 1fr;
+      gap: 56px;
+      align-items: center;
+      padding: 90px 0;
     }
 
-    .cta h2 {
-      font-size: clamp(38px, 6.5vw, 78px);
-      line-height: 0.98;
-      letter-spacing: -0.07em;
-      margin-bottom: 18px;
+    .activity-list {
+      display: grid;
+      gap: 18px;
     }
 
-    .cta p {
-      color: var(--muted);
+    .activity-label {
+      color: var(--cyan);
+      font-size: 13px;
+      font-weight: 850;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
       margin-bottom: 28px;
+    }
+
+    .activity-tab {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 14px;
+      align-items: center;
+      color: var(--gray);
+      font-size: 15px;
+      transition: color 0.25s ease;
+    }
+
+    .activity-tab.active {
+      color: var(--black);
+    }
+
+    .activity-tab.active b {
+      color: var(--cyan);
+    }
+
+    .activity-content {
+      min-height: 360px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-left: 1px solid var(--line-dark);
+      padding-left: 54px;
+    }
+
+    .activity-number {
+      color: var(--cyan);
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      margin-bottom: 24px;
+    }
+
+    .activity-title {
+      font-size: clamp(42px, 6vw, 84px);
+      line-height: 0.98;
+      letter-spacing: -0.075em;
+      font-weight: 850;
+      margin-bottom: 28px;
+    }
+
+    .activity-desc {
+      color: #424245;
+      font-size: clamp(18px, 2vw, 26px);
+      line-height: 1.62;
+      max-width: 760px;
+    }
+
+    .program-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      border-top: 1px solid var(--line-dark);
+    }
+
+    .program-item {
+      position: relative;
+      isolation: isolate;
+      padding: 34px 30px;
+      border-bottom: 1px solid var(--line-dark);
+      border-right: 1px solid var(--line-dark);
+      transition: color 0.25s ease;
+      display: block;
+    }
+
+    .program-item:nth-child(2n) {
+      border-right: 0;
+    }
+
+    .program-item::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      width: 100vw;
+      height: 100%;
+      background: var(--dark-hover);
+      transform: scaleX(0);
+      transition: transform 0.38s ease;
+      z-index: -1;
+    }
+
+    .program-item:nth-child(odd)::before {
+      right: 0;
+      transform-origin: right;
+    }
+
+    .program-item:nth-child(even)::before {
+      left: 0;
+      transform-origin: left;
+    }
+
+    .program-item:hover {
+      z-index: 360;
+      color: var(--white);
+    }
+
+    .program-item:hover::before {
+      transform: scaleX(1);
+    }
+
+    .program-item h3 {
+      font-size: 25px;
+      letter-spacing: -0.045em;
+      margin-bottom: 12px;
+      transition: color 0.25s ease;
+    }
+
+    .program-item p {
+      color: #424245;
+      font-size: 16px;
+      line-height: 1.78;
+      transition: color 0.25s ease;
+    }
+
+    .program-item:hover h3 {
+      color: var(--white);
+    }
+
+    .program-item:hover p {
+      color: rgba(255,255,255,0.82);
+    }
+
+    .creation-layout {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 56px;
+      align-items: stretch;
+    }
+
+    .contest-link {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 44px 0;
+      min-height: 100%;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .contest-link::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 0%;
+      height: 100%;
+      background: var(--cyan);
+      z-index: -1;
+      transition: width 0.45s ease;
+    }
+
+    .contest-link:hover::before {
+      width: 100%;
+    }
+
+    .contest-link h3 {
+      font-size: clamp(40px, 5vw, 72px);
+      line-height: 0.98;
+      letter-spacing: -0.075em;
+      margin-bottom: 22px;
+      transition: color 0.25s ease, padding-left 0.25s ease;
+    }
+
+    .contest-link p {
+      color: var(--gray2);
+      max-width: 640px;
       font-size: 17px;
+      transition: color 0.25s ease, padding-left 0.25s ease;
+    }
+
+    .contest-link:hover h3,
+    .contest-link:hover p {
+      color: var(--black);
+      padding-left: 24px;
+    }
+
+    .contest-link .arrow {
+      display: inline-block;
+      margin-top: 34px;
+      color: var(--cyan);
+      font-size: 18px;
+      transition: color 0.25s ease, padding-left 0.25s ease;
+    }
+
+    .contest-link:hover .arrow {
+      color: var(--black);
+      padding-left: 24px;
+    }
+
+    .creation-list {
+      display: grid;
+      gap: 0;
+      border-top: 1px solid var(--line);
+      align-self: stretch;
+    }
+
+    .creation-item {
+      padding: 28px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .creation-item h3 {
+      font-size: 24px;
+      letter-spacing: -0.045em;
+      margin-bottom: 8px;
+    }
+
+    .creation-item p {
+      color: var(--gray2);
+    }
+
+    .community-sticky-section {
+      min-height: 330vh;
+      padding: 130px 24px 0;
+      background: var(--black);
+      color: var(--white);
+      position: relative;
+      overflow: clip;
+    }
+
+    .community-wipe {
+      position: fixed;
+      left: 0;
+      top: 0;
+      height: 100vh;
+      width: 100vw;
+      z-index: 350;
+      pointer-events: none;
+      transform: scaleX(0);
+      transform-origin: left;
+      background: var(--cyan);
+    }
+
+    .community-wipe.run {
+      animation: fullSectionWipe 0.58s ease;
+    }
+
+    @keyframes fullSectionWipe {
+      0% { transform: scaleX(0); transform-origin: left; }
+      45% { transform: scaleX(1); transform-origin: left; }
+      46% { transform: scaleX(1); transform-origin: right; }
+      100% { transform: scaleX(0); transform-origin: right; }
+    }
+
+    .community-sticky {
+      position: sticky;
+      top: 0;
+      min-height: 100vh;
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 0.42fr 1fr;
+      gap: 56px;
+      align-items: center;
+      padding: 90px 0;
+      z-index: 2;
+    }
+
+    .community-menu {
+      display: grid;
+      gap: 18px;
+    }
+
+    .community-tab {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 14px;
+      color: var(--gray);
+      transition: color 0.25s ease;
+    }
+
+    .community-tab.active {
+      color: var(--white);
+    }
+
+    .community-tab.active b {
+      color: var(--cyan);
+    }
+
+    .community-panel {
+      min-height: 360px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-left: 1px solid var(--line);
+      padding-left: 54px;
+      overflow: hidden;
+    }
+
+    .community-number {
+      color: var(--cyan);
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      margin-bottom: 24px;
+    }
+
+    .community-title {
+      font-size: clamp(42px, 6vw, 84px);
+      line-height: 0.98;
+      letter-spacing: -0.075em;
+      font-weight: 850;
+      margin-bottom: 28px;
+    }
+
+    .community-desc {
+      color: var(--gray2);
+      font-size: clamp(18px, 2vw, 26px);
+      line-height: 1.62;
+      max-width: 760px;
+    }
+
+    .news-list {
+      border-top: 1px solid var(--line-dark);
+    }
+
+    .news-row {
+      position: relative;
+      isolation: isolate;
+      display: grid;
+      grid-template-columns: 130px 1fr 120px;
+      gap: 26px;
+      align-items: start;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--line-dark);
+      transition: color 0.25s ease;
+    }
+
+    .news-row::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 100vw;
+      height: 100%;
+      background: var(--dark-hover);
+      transform: translateX(-50%) scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s ease;
+      z-index: -1;
+    }
+
+    .news-row:hover {
+      z-index: 360;
+      color: var(--white);
+    }
+
+    .news-row:hover::before {
+      transform: translateX(-50%) scaleX(1);
+    }
+
+    .news-category {
+      color: var(--gray);
+      font-size: 14px;
+      font-weight: 800;
+      transition: color 0.25s ease;
+    }
+
+    .news-title {
+      font-size: 23px;
+      letter-spacing: -0.045em;
+      font-weight: 780;
+      transition: color 0.25s ease;
+    }
+
+    .news-desc {
+      color: #424245;
+      margin-top: 6px;
+      font-size: 15px;
+      transition: color 0.25s ease;
+    }
+
+    .news-date {
+      color: var(--gray);
+      text-align: right;
+      font-size: 14px;
+      transition: color 0.25s ease;
+    }
+
+    .news-row:hover .news-category {
+      color: var(--cyan);
+    }
+
+    .news-row:hover .news-title {
+      color: var(--white);
+    }
+
+    .news-row:hover .news-desc,
+    .news-row:hover .news-date {
+      color: rgba(255,255,255,0.78);
+    }
+
+    .contact {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .contact-layout {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 70px;
+      align-items: stretch;
+    }
+
+    .contact h2 {
+      font-size: clamp(42px, 6vw, 88px);
+      line-height: 1.04;
+      letter-spacing: -0.055em;
+      font-weight: 800;
+    }
+
+    .surface-cta {
+      border-top: 1px solid var(--line);
+      align-self: stretch;
+      display: grid;
+      align-content: stretch;
+    }
+
+    .surface-cta a {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      border-bottom: 1px solid var(--line);
+      color: var(--white);
+      font-size: 20px;
+      letter-spacing: -0.04em;
+      font-weight: 760;
+      transition: background 0.25s ease, color 0.25s ease, padding 0.25s ease;
+    }
+
+    .surface-cta a::after {
+      content: "↗";
+      font-size: 18px;
+    }
+
+    .surface-cta a:hover {
+      background: var(--cyan);
+      color: var(--black);
+      padding-left: 20px;
+      padding-right: 20px;
     }
 
     .footer {
+      background: var(--black);
+      color: var(--gray2);
       border-top: 1px solid var(--line);
-      padding: 38px 24px;
-      color: var(--muted);
-      font-size: 14px;
+      padding: 14px 24px;
+      font-size: 12px;
     }
 
     .footer-inner {
@@ -959,104 +965,166 @@
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
+      align-items: center;
+      gap: 24px;
     }
 
-    @media (max-width: 980px) {
-      .grid-3,
-      .grid-2,
-      .steps {
-        grid-template-columns: 1fr;
-      }
+    .footer-contact {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
 
-      .nav-menu {
-        position: absolute;
-        top: 68px;
-        left: 16px;
-        right: 16px;
+    .footer strong {
+      color: var(--white);
+      font-size: 12px;
+    }
+
+    .footer a {
+      color: var(--gray2);
+      transition: color 0.25s ease;
+    }
+
+    .footer a:hover {
+      color: var(--cyan);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1020px) {
+      .right-nav {
         display: none;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0;
-        padding: 14px;
-        border: 1px solid var(--line);
-        border-radius: 20px;
-        background: rgba(5, 5, 5, 0.94);
       }
 
-      .nav-menu.open {
+      .hero-top-nav {
+        display: none;
+      }
+
+      .mobile-nav {
         display: flex;
       }
 
-      .nav-menu a {
-        padding: 13px 12px;
-      }
-
-      .mobile-toggle {
-        display: block;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .hero {
-        padding: 78px 18px 54px;
-      }
-
-      .hero-visual {
-        width: 86vw;
-        height: 86vw;
-        min-height: 310px;
-      }
-
-      .art-object {
-        width: 82vw;
-        height: 82vw;
-      }
-
-      .hero-title {
-        font-size: 27px;
-      }
-
-      .hero-desc,
-      .section-desc {
-        font-size: 15px;
-      }
-
-      .hero-meta {
-        flex-direction: column;
-        gap: 6px;
-      }
-
-      .hero-meta span {
-        padding-right: 0;
-      }
-
-      .hero-meta span::after {
-        display: none;
-      }
-
-      .btn {
-        width: 100%;
-      }
-
       section {
-        padding: 82px 18px;
+        padding: 94px 20px;
       }
 
-      .card,
-      .step,
-      .location-box {
-        padding: 23px;
+      .section-head,
+      .about-text,
+      .history-toggle,
+      .activity-sticky,
+      .creation-layout,
+      .community-sticky,
+      .contact-layout {
+        grid-template-columns: 1fr;
       }
 
-      .spec-row {
-        flex-direction: column;
-        gap: 4px;
+      .history-items {
+        margin-left: 0;
+      }
+
+      .history-item {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .activities,
+      .community-sticky-section {
+        min-height: auto;
+        padding: 94px 20px;
+      }
+
+      .activity-sticky,
+      .community-sticky {
+        position: relative;
+        min-height: auto;
+        padding: 60px 0 0;
+      }
+
+      .activity-content,
+      .community-panel {
+        border-left: 0;
+        padding-left: 0;
+        min-height: auto;
+      }
+
+      .program-list {
+        grid-template-columns: 1fr;
+      }
+
+      .program-item {
+        border-right: 0;
+      }
+
+      .program-item::before {
+        left: 50% !important;
+        right: auto !important;
+        transform-origin: center !important;
+        transform: translateX(-50%) scaleX(0);
+      }
+
+      .program-item:hover::before {
+        transform: translateX(-50%) scaleX(1);
       }
 
       .footer-inner {
         flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .hero {
+        padding: 80px 18px 70px;
+      }
+
+      .hero-inner {
+        min-height: 620px;
+      }
+
+      .hero-title {
+        font-size: 58px;
+      }
+
+      .section-title {
+        font-size: 40px;
+      }
+
+      .activity-title,
+      .community-title,
+      .contact h2 {
+        font-size: 40px;
+      }
+
+      .vision h2 {
+        font-size: 48px;
+      }
+
+      .news-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .news-date {
+        text-align: left;
+      }
+
+      .surface-cta a {
+        min-height: 68px;
+        font-size: 17px;
+      }
+
+      .footer {
+        padding-bottom: 86px;
       }
     }
 
@@ -1077,386 +1145,244 @@
 </head>
 
 <body>
-  <header class="site-header" id="siteHeader">
-    <nav class="nav">
-      <a href="#home" class="logo">AI 창조공모대전</a>
+  <nav class="hero-top-nav" id="heroTopNav" aria-label="상단 네비게이션">
+    <a class="top-logo" href="#home">AI 콘텐츠 창작 협회</a>
+    <div class="top-links">
+      <a href="#about">About</a>
+      <a href="#records">History</a>
+      <a href="#activities">Activities</a>
+      <a href="#education">Education</a>
+      <a href="#creation">Creation</a>
+      <a href="#community">Community</a>
+      <a href="#news">News</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
 
-      <button class="mobile-toggle" type="button" aria-label="메뉴 열기">☰</button>
+  <nav class="right-nav" id="rightNav" aria-label="우측 네비게이션">
+    <ul>
+      <li><a href="#about"><span class="label">협회 소개</span><span class="num">01</span><span class="dot"></span></a></li>
+      <li><a href="#records"><span class="label">약력</span><span class="num">02</span><span class="dot"></span></a></li>
+      <li><a href="#vision"><span class="label">비전</span><span class="num">03</span><span class="dot"></span></a></li>
+      <li><a href="#activities"><span class="label">활동 분야</span><span class="num">04</span><span class="dot"></span></a></li>
+      <li><a href="#education"><span class="label">교육</span><span class="num">05</span><span class="dot"></span></a></li>
+      <li><a href="#creation"><span class="label">창작</span><span class="num">06</span><span class="dot"></span></a></li>
+      <li><a href="#community"><span class="label">커뮤니티</span><span class="num">07</span><span class="dot"></span></a></li>
+      <li><a href="#news"><span class="label">소식/알림</span><span class="num">08</span><span class="dot"></span></a></li>
+      <li><a href="#contact"><span class="label">문의</span><span class="num">09</span><span class="dot"></span></a></li>
+    </ul>
+  </nav>
 
-      <div class="nav-menu">
-        <a href="#about">개요</a>
-        <a href="#theme">주제</a>
-        <a href="#schedule">일정</a>
-        <a href="#submit">제출</a>
-        <a href="#awards">시상</a>
-        <a href="#notice">유의사항</a>
-        <a href="#apply" class="nav-cta">지원하기</a>
-      </div>
-    </nav>
-  </header>
+  <nav class="mobile-nav" aria-label="모바일 네비게이션">
+    <a href="#about">소개</a>
+    <a href="#records">약력</a>
+    <a href="#activities">활동</a>
+    <a href="#education">교육</a>
+    <a href="#creation">창작</a>
+    <a href="#contact">문의</a>
+  </nav>
 
   <main>
     <section class="hero" id="home">
       <div class="hero-inner">
-        <div class="hero-visual" aria-label="3D 로우폴리 코드 텍스처 명화 비주얼">
-          <div class="art-object variant-0" id="artObject">
-            <div class="poly-piece p1" style="--z: 90px;"></div>
-            <div class="poly-piece p2" style="--z: 54px;"></div>
-            <div class="poly-piece p3" style="--z: 120px;"></div>
-            <div class="poly-piece p4" style="--z: 118px;"></div>
-            <div class="poly-piece p5" style="--z: 76px;"></div>
-          </div>
-        </div>
-
-        <h1 class="hero-title">제2회 2026 대한민국 AI 창조공모대전</h1>
-
-        <p class="hero-desc">
-          AI 이미지와 AI 영상으로 ‘우리가 꿈꾸는 세상’을 그리는 전국 공모전.
-          인간의 감성과 인공지능의 창작 도구가 만나는 새로운 예술의 장을 엽니다.
-        </p>
-
-        <div class="hero-buttons">
-          <a class="btn btn-primary" href="#apply">지원하기</a>
-          <a class="btn btn-secondary" href="#about">자세히 보기</a>
-        </div>
-
-        <div class="hero-meta">
-          <span>접수 기간 2026.11.25 - 11.29</span>
-          <span>공모 분야 AI 이미지 / AI 영상</span>
-          <span>주최 / 주관 사단법인 한국창조미술협회</span>
-        </div>
+        <div class="hero-kicker">AI Content Creation Association</div>
+        <h1 class="hero-title">AI 콘텐츠<br />창작 협회</h1>
+        <div class="hero-title-en">AI Content Creation Association</div>
       </div>
-
-      <div class="scroll-indicator">Scroll</div>
     </section>
 
-    <section id="about">
-      <div class="section-inner">
-        <div class="section-label">About</div>
-        <h2 class="section-title">AI로,<br />새로운 창작을</h2>
-        <p class="section-desc">
-          AI 이미지와 AI 영상으로 ‘우리가 꿈꾸는 세상’을 그리는 전국 공모전입니다.
-          초등학생, 중학생, 고등학생, 대학생, 일반 성인까지 누구나 참여할 수 있으며,
-          인공지능을 창작 도구로 활용해 자신만의 시선을 표현할 수 있습니다.
-        </p>
+    <section class="light" id="about">
+      <div class="section-inner reveal">
+        <div class="section-head">
+          <div class="section-no">01 / About Association</div>
+          <div><h2 class="section-title">AI 콘텐츠 창작 협회 소개</h2></div>
+        </div>
 
-        <div class="grid grid-3">
-          <div class="card">
-            <h3>AI 창작</h3>
-            <p>인공지능을 이미지와 영상 창작의 도구로 활용해 새로운 표현 가능성을 탐구합니다.</p>
-          </div>
-          <div class="card">
-            <h3>전국 공모</h3>
-            <p>학생부, 대학생부, 일반부까지 폭넓은 대상이 참여할 수 있는 열린 공모전입니다.</p>
-          </div>
-          <div class="card">
-            <h3>전시와 시상</h3>
-            <p>수상작은 전시를 통해 소개되며, 우수 작품에는 상장과 부상이 수여됩니다.</p>
+        <div class="about-text">
+          <div class="about-lead">창의성과 기술이 조화롭게 만나는 미래 콘텐츠 생태계를 만들어갑니다.</div>
+          <div class="about-body">
+            <p>AI콘텐츠창작협회는 AI기술과 인간의 창의성이 조화롭게 공존하는 올바른 AI 미래 콘텐츠 생태계를 만들어가기 위해 설립되었습니다.</p>
+            <p>협회는 자신의 생각과 아이디어를 창의적/체계적으로 기획하고 시각적으로 표현하는 AI 활용 능력 함양에 가치를 둡니다. AI 기반 콘텐츠 창작 교육, 윤리적 활용 기준 연구, 전시/공모전/워크숍 등의 창작 네트워크 구축을 통해 책임감 있는 AI 활용 경험을 확장하고 있습니다.</p>
+            <p>이를 바탕으로 미래사회에 필요한 혁신적 사고와 표현 역량을 기르는 미래인재교육의 기반을 마련하고자 합니다.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="theme">
-      <div class="section-inner">
-        <div class="section-label">Main Theme</div>
-        <h2 class="section-title">우리가 꿈꾸는 세상</h2>
-        <p class="section-desc">
-          공모전의 대주제는 ‘우리가 꿈꾸는 세상’입니다.
-          지속가능성, 한국적 정체성, 미래의 삶과 직업을 AI 창작으로 표현합니다.
-        </p>
+    <section class="dark" id="records">
+      <div class="section-inner reveal">
+        <div class="section-head">
+          <div class="section-no">02 / History</div>
+          <div><h2 class="section-title">약력</h2></div>
+        </div>
 
-        <div class="grid grid-3">
-          <div class="card">
-            <div class="theme-number">THEME 01</div>
-            <h3>지속가능한 우리의 세상</h3>
-            <p>지속가능성 / ESG / 생태보호 / 친환경 사회 / SDGs / 재생에너지</p>
-            <div class="tag-list">
-              <span class="tag">Sustainability</span>
-              <span class="tag">ESG</span>
-              <span class="tag">SDGs</span>
+        <div class="history-timeline">
+          <div class="history-group open">
+            <button class="history-toggle" type="button" aria-expanded="true">
+              <span class="history-year">2025</span>
+              <span class="history-summary">설립 / 교육 개발 / 전시 / APEC / 공모대전 / 세미나</span>
+              <span class="history-icon">+</span>
+            </button>
+            <div class="history-panel">
+              <div class="history-items">
+                <div class="history-item"><div class="history-label">08</div><div><div class="history-title">8월 설립</div><div class="history-desc">고유번호 503-82-88097</div></div></div>
+                <div class="history-item"><div class="history-label">Education</div><div><div class="history-title">AI 활용 지도사 교재 개발</div><div class="history-desc">교육 프로그램 개발, 강연</div></div></div>
+                <div class="history-item"><div class="history-label">Exhibition</div><div><div class="history-title">생성 AI 그림전 기획 및 전시</div><div class="history-desc">국회의원회관 전시실, 경주 황남전시관 등</div></div></div>
+                <div class="history-item"><div class="history-label">APEC</div><div><div class="history-title">APEC 정상회담 기념 생성AI 예술 작품전 초청</div><div class="history-desc">2025 APEC 정상회담 기념 생성AI 예술 작품전</div></div></div>
+                <div class="history-item"><div class="history-label">Contest</div><div><div class="history-title">제1회 대한민국 생성AI 창조 공모대전 운영위원회</div><div class="history-desc">AI 콘텐츠 공모전 운영 네트워크 참여</div></div></div>
+                <div class="history-item"><div class="history-label">Seminar</div><div><div class="history-title">AI 창작 세미나 개최</div><div class="history-desc">홍익대학교 세종캠퍼스</div></div></div>
+              </div>
             </div>
           </div>
 
-          <div class="card">
-            <div class="theme-number">THEME 02</div>
-            <h3>한국의 멋</h3>
-            <p>K-컬처 / 한국적 정체성 / 전통과 현대의 결합</p>
-            <div class="tag-list">
-              <span class="tag">K-Culture</span>
-              <span class="tag">Tradition</span>
-              <span class="tag">Identity</span>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="theme-number">THEME 03</div>
-            <h3>내가 꿈꾸는 내일</h3>
-            <p>미래 자화상 / 작은 행복의 순간 / 신나는 내일 / 미래 직업</p>
-            <div class="tag-list">
-              <span class="tag">Future</span>
-              <span class="tag">Dream</span>
-              <span class="tag">Tomorrow</span>
+          <div class="history-group">
+            <button class="history-toggle" type="button" aria-expanded="false">
+              <span class="history-year">2026</span>
+              <span class="history-summary">공모대전 / 워크숍</span>
+              <span class="history-icon">+</span>
+            </button>
+            <div class="history-panel">
+              <div class="history-items">
+                <div class="history-item"><div class="history-label">Contest</div><div><div class="history-title">제2회 대한민국 생성AI 창조 공모대전 운영위원회</div><div class="history-desc">AI 창작자 발굴과 우수 콘텐츠 확산</div></div></div>
+                <div class="history-item"><div class="history-label">Workshop</div><div><div class="history-title">AI 창작 워크숍 개최</div><div class="history-desc">강남 모임 공간</div></div></div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="target">
-      <div class="section-inner">
-        <div class="section-label">Participants</div>
-        <h2 class="section-title">지원 대상</h2>
+    <section class="vision dark" id="vision">
+      <div class="section-inner reveal">
+        <h2>AI와 함께 창작하는 콘텐츠,<br />함께 여는 <strong>새로운 미래</strong></h2>
+      </div>
+    </section>
 
-        <div class="grid grid-3">
-          <div class="card">
-            <h3>학생부</h3>
-            <p>전국 초등학생 / 중학생 / 고등학생</p>
+    <section class="activities light" id="activities">
+      <div class="section-inner reveal">
+        <div class="section-head">
+          <div class="section-no">04 / Activities</div>
+          <div><h2 class="section-title">활동 분야</h2></div>
+        </div>
+      </div>
+
+      <div class="activity-sticky">
+        <div>
+          <div class="activity-label">Activity Fields</div>
+          <div class="activity-list">
+            <div class="activity-tab active" data-index="0"><b>01</b><span>AI 교육 및 역량 강화</span></div>
+            <div class="activity-tab" data-index="1"><b>02</b><span>AI 교육 프로그램 연구/개발</span></div>
+            <div class="activity-tab" data-index="2"><b>03</b><span>AI 창작 및 전시</span></div>
+            <div class="activity-tab" data-index="3"><b>04</b><span>AI 공모전</span></div>
           </div>
-          <div class="card">
-            <h3>대학생부</h3>
-            <p>전국 대학생 / 대학원생</p>
-          </div>
-          <div class="card">
-            <h3>일반부</h3>
-            <p>대한민국 국민 중 성인</p>
+        </div>
+
+        <div class="activity-content">
+          <div class="activity-number" id="activityNumber">01</div>
+          <h2 class="activity-title" id="activityTitle">AI 교육 및 역량 강화</h2>
+          <p class="activity-desc" id="activityDesc">AI 교육 및 역량 강화는 미래 직업 체험 교육, AI 활용 교육, AI 콘텐츠 교육을 통해 학습자가 AI를 창의적 표현 도구로 이해하고 활용할 수 있도록 돕습니다. 또한 AI 윤리와 저작권, 디지털 시민성 교육을 함께 다루어 책임감 있는 AI 활용 역량을 기릅니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="light" id="education">
+      <div class="section-inner reveal">
+        <div class="section-head">
+          <div class="section-no">05 / Education</div>
+          <div><h2 class="section-title">AI 교육 프로그램</h2></div>
+        </div>
+
+        <div class="program-list">
+          <a class="program-item" href="education-basic.html"><h3>AI 창작 입문 교육</h3><p>AI 이미지/영상 생성의 기본 원리와 프롬프트 작성, 창작 과정 기록 방법을 배웁니다.</p></a>
+          <a class="program-item" href="education-image-video.html"><h3>AI 이미지/영상 제작 교육</h3><p>AI 콘텐츠 기획, 시각화, 카드뉴스, 숏폼, 디지털 아트워크 제작 과정을 실습합니다.</p></a>
+          <a class="program-item" href="education-ethics.html"><h3>AI 윤리와 저작권</h3><p>AI 창작물의 윤리적 활용 기준, 저작권 이슈, 출처 표기와 책임 있는 사용 방식을 다룹니다.</p></a>
+          <a class="program-item" href="education-planning-workshop.html"><h3>AI 콘텐츠 기획 워크숍</h3><p>아이디어 발굴부터 콘셉트 설계, 결과물 제작까지 창작 프로젝트형 워크숍으로 운영합니다.</p></a>
+          <a class="program-item" href="education-instructor.html"><h3>AI 창작 지도사 과정</h3><p>교육 현장에서 AI 창작 수업을 기획하고 운영할 수 있는 지도 역량을 강화합니다.</p></a>
+          <a class="program-item" href="education-digital-citizenship.html"><h3>디지털 시민성 교육</h3><p>AI 시대에 필요한 미디어 리터러시, 데이터 윤리, 안전한 콘텐츠 활용 문화를 배웁니다.</p></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="dark" id="creation">
+      <div class="section-inner reveal">
+        <div class="section-head">
+          <div class="section-no">06 / Creation</div>
+          <div><h2 class="section-title">AI 창작 네트워크</h2></div>
+        </div>
+
+        <div class="creation-layout">
+          <a class="contest-link" href="https://yourglitches.github.io/practice-website-designbanff-1/" target="_blank" rel="noopener">
+            <h3>대한민국 생성AI 창조 공모대전</h3>
+            <p>AI 창작자 발굴과 우수 콘텐츠 확산을 위한 대표 공모전 운영 프로젝트입니다.</p>
+            <span class="arrow">공모대전 사이트로 이동 ↗</span>
+          </a>
+
+          <div class="creation-list">
+            <div class="creation-item"><h3>생성 AI 그림전</h3><p>생성형 AI를 활용한 이미지 창작 전시 프로젝트</p></div>
+            <div class="creation-item"><h3>AI 창작 세미나</h3><p>AI 창작 교육과 활용 사례를 공유하는 지식 교류 프로그램</p></div>
+            <div class="creation-item"><h3>AI 창작 워크숍</h3><p>프로젝트 기반의 실습형 AI 콘텐츠 창작 워크숍을 운영합니다.</p></div>
+            <div class="creation-item"><h3>AI 디지털 아트워크 아카이브</h3><p>우수 콘텐츠, 창작 과정, 포트폴리오를 기록하는 디지털 아카이브</p></div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="schedule">
-      <div class="section-inner">
-        <div class="section-label">Schedule</div>
-        <h2 class="section-title">일정 및 장소</h2>
+    <section class="community-sticky-section dark" id="community">
+      <div class="community-wipe" id="communityWipe"></div>
 
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-date">2026.11.25 WED - 11.29 SUN</div>
-            <div class="timeline-title">1차 접수 기간</div>
-            <div class="timeline-text">작품 및 출품 자료를 접수합니다.</div>
-          </div>
+      <div class="section-inner reveal">
+        <div class="section-head">
+          <div class="section-no">07 / Community</div>
+          <div><h2 class="section-title">커뮤니티</h2></div>
+        </div>
+      </div>
 
-          <div class="timeline-item">
-            <div class="timeline-date">2026.12.08 TUE / 17:00</div>
-            <div class="timeline-title">1차 심사 발표</div>
-            <div class="timeline-text">1차 예선 심사 결과를 발표합니다.</div>
-          </div>
-
-          <div class="timeline-item">
-            <div class="timeline-date">2026.12.22 TUE / 17:00</div>
-            <div class="timeline-title">2차 심사 발표</div>
-            <div class="timeline-text">최종 수상작 심사 결과를 발표합니다.</div>
-          </div>
-
-          <div class="timeline-item">
-            <div class="timeline-date">2026.12.23 - 12.29</div>
-            <div class="timeline-title">수상작 전시</div>
-            <div class="timeline-text">갤러리 라메르 2F에서 수상작 전시가 진행됩니다.</div>
-          </div>
-
-          <div class="timeline-item">
-            <div class="timeline-date">2026.12.28 MON / 15:00</div>
-            <div class="timeline-title">시상식</div>
-            <div class="timeline-text">수상자 대상 시상식이 진행됩니다.</div>
+      <div class="community-sticky">
+        <div>
+          <div class="activity-label">Community Program</div>
+          <div class="community-menu">
+            <div class="community-tab active" data-index="0"><b>01</b><span>교류</span></div>
+            <div class="community-tab" data-index="1"><b>02</b><span>세미나</span></div>
+            <div class="community-tab" data-index="2"><b>03</b><span>워크숍</span></div>
           </div>
         </div>
 
-        <div class="location-box">
-          <h3>갤러리 라메르 2F</h3>
-          <p>서울특별시 종로구 인사동5길 26</p>
+        <div class="community-panel">
+          <div class="community-number" id="communityNumber">01</div>
+          <h2 class="community-title" id="communityTitle">교류</h2>
+          <p class="community-desc" id="communityDesc">AI 창작자, 교육자, 예술가, 기획자가 함께 관점을 나누고 경험을 공유하는 교류 기반의 커뮤니티를 운영합니다.</p>
         </div>
       </div>
     </section>
 
-    <section id="submit">
-      <div class="section-inner">
-        <div class="section-label">Submission</div>
-        <h2 class="section-title">공모 분야 및 제출</h2>
-        <p class="section-desc">
-          공모 분야는 AI 이미지와 AI 영상으로 구분되며,
-          작품과 함께 사용 AI 툴, 프롬프트, AI 제작 기록을 제출해야 합니다.
-        </p>
-
-        <div class="steps">
-          <div class="step">
-            <h3>지원서 작성</h3>
-            <p>구글폼에 기본 정보와 출품 분야를 입력합니다.</p>
-          </div>
-          <div class="step">
-            <h3>작품 업로드</h3>
-            <p>작품 이미지 또는 영상 링크와 함께 사용 AI 툴, 프롬프트, 제작 기록을 첨부합니다.</p>
-          </div>
-          <div class="step">
-            <h3>접수 완료</h3>
-            <p>접수 기간 내 제출하면 1차 예선 접수가 완료됩니다.</p>
-          </div>
+    <section class="light" id="news">
+      <div class="section-inner reveal">
+        <div class="section-head">
+          <div class="section-no">08 / News</div>
+          <div><h2 class="section-title">소식/알림</h2></div>
         </div>
 
-        <div class="grid grid-2">
-          <div class="card">
-            <h3>AI 이미지</h3>
-            <div class="spec-list">
-              <div class="spec-row"><strong>비율</strong><span>1:1 / 5:7 / 7:5 중 선택</span></div>
-              <div class="spec-row"><strong>형식</strong><span>JPG 또는 PNG</span></div>
-              <div class="spec-row"><strong>해상도</strong><span>300dpi 이상</span></div>
-              <div class="spec-row"><strong>용량</strong><span>30MB 이하</span></div>
-            </div>
-          </div>
-
-          <div class="card">
-            <h3>AI 영상</h3>
-            <div class="spec-list">
-              <div class="spec-row"><strong>해상도</strong><span>FHD 1080×1920 이상</span></div>
-              <div class="spec-row"><strong>형식</strong><span>MP4 권장 / MOV / AVI 가능</span></div>
-              <div class="spec-row"><strong>숏폼</strong><span>1분 내외 / 9:16</span></div>
-              <div class="spec-row"><strong>일반 영상</strong><span>3분 이내 / 16:9</span></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card" style="margin-top:16px;">
-          <h3>제출 자료</h3>
-          <div class="tag-list">
-            <span class="tag">출품원서</span>
-            <span class="tag">작품 이미지</span>
-            <span class="tag">영상 업로드 링크</span>
-            <span class="tag">사용 AI 툴</span>
-            <span class="tag">프롬프트</span>
-            <span class="tag">AI 제작 기록</span>
-          </div>
+        <div class="news-list">
+          <a class="news-row" href="news-seminar.html"><div class="news-category">공지</div><div><div class="news-title">AI 창작 세미나 개최 안내</div><div class="news-desc">AI 창작 교육과 콘텐츠 활용 사례를 공유하는 세미나를 준비 중입니다.</div></div><div class="news-date">2026. 예정</div></a>
+          <a class="news-row" href="news-exhibition.html"><div class="news-category">보도자료</div><div><div class="news-title">생성AI 예술 작품전 초청</div><div class="news-desc">APEC 정상회담 기념 생성AI 예술 작품전에 참여했습니다.</div></div><div class="news-date">2025</div></a>
+          <a class="news-row" href="news-newsletter.html"><div class="news-category">뉴스레터</div><div><div class="news-title">AI 콘텐츠 창작 협회 활동 소식</div><div class="news-desc">교육, 전시, 공모전, 워크숍 등 협회의 주요 활동을 전합니다.</div></div><div class="news-date">2026. 예정</div></a>
         </div>
       </div>
     </section>
 
-    <section id="judge">
-      <div class="section-inner">
-        <div class="section-label">Judging</div>
-        <h2 class="section-title">심사 기준</h2>
-        <p class="section-desc">
-          작품 의도와 제작 과정, 주제 적합성, 독창성, 완성도, 전달력,
-          확장성, 화제성, AI 활용도를 종합적으로 심사합니다.
-        </p>
-
-        <div class="judge-list">
-          <span class="judge-item">작품 의도 및 제작 과정</span>
-          <span class="judge-item">주제 적합성</span>
-          <span class="judge-item">독창성</span>
-          <span class="judge-item">완성도</span>
-          <span class="judge-item">전달력</span>
-          <span class="judge-item">확장성</span>
-          <span class="judge-item">화제성</span>
-          <span class="judge-item">AI 활용도</span>
-          <span class="judge-item">사회성</span>
-          <span class="judge-item">K-문화성</span>
-          <span class="judge-item">재치</span>
-        </div>
-      </div>
-    </section>
-
-    <section id="awards">
-      <div class="section-inner">
-        <div class="section-label">Awards</div>
-        <h2 class="section-title">시상 내역</h2>
-
-        <div class="grid grid-3">
-          <div class="card award-card">
-            <div class="award-rank">GRAND PRIZE</div>
-            <div class="award-prize">대상</div>
-            <div class="award-info">1명 / 상패 및 200만 원 상품권</div>
-          </div>
-
-          <div class="card award-card">
-            <div class="award-rank">FIRST PRIZE</div>
-            <div class="award-prize">최우수상</div>
-            <div class="award-info">0명 / 상패 및 100만 원 상품권</div>
-          </div>
-
-          <div class="card award-card">
-            <div class="award-rank">EXCELLENCE</div>
-            <div class="award-prize">우수상</div>
-            <div class="award-info">00명 / 상장 및 50만 원 상품권</div>
-          </div>
-
-          <div class="card award-card">
-            <div class="award-rank">SPECIAL</div>
-            <div class="award-prize">특별상</div>
-            <div class="award-info">00명 / 상장 및 부상</div>
-          </div>
-
-          <div class="card award-card">
-            <div class="award-rank">ENCOURAGEMENT</div>
-            <div class="award-prize">장려상</div>
-            <div class="award-info">00명 / 상장 및 10만 원 상품권</div>
-          </div>
-
-          <div class="card award-card">
-            <div class="award-rank">SELECTED</div>
-            <div class="award-prize">특선 / 입선</div>
-            <div class="award-info">000명 / 상장</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="fee">
-      <div class="section-inner">
-        <div class="section-label">Entry Fee</div>
-        <h2 class="section-title">출품비</h2>
-
-        <div class="grid grid-2">
-          <div class="card">
-            <h3>일반 참가자</h3>
-            <p>1점 3만 원 / 2점 5만 원</p>
-          </div>
-
-          <div class="card">
-            <h3>학생부</h3>
-            <p>출품비 없음 / 1인 1점 출품</p>
-          </div>
+    <section class="contact dark" id="contact">
+      <div class="contact-layout">
+        <div>
+          <div class="section-no">09 / Contact</div>
+          <h2>AI와 함께 창작하는<br />새로운 미래에 함께하세요</h2>
         </div>
 
-        <div class="location-box">
-          <h3>입금계좌</h3>
-          <p>국민은행 006001-04-334391</p>
-          <p>예금주: 사단법인 한국창조미술협회 사업본부</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="notice">
-      <div class="section-inner">
-        <div class="section-label">Notice</div>
-        <h2 class="section-title">유의사항</h2>
-
-        <ul class="notice">
-          <li>출품작은 2026년 1월 이후 제작된 작품이어야 합니다.</li>
-          <li>사용 AI 툴, 프롬프트, AI 제작 기록을 반드시 첨부해야 합니다.</li>
-          <li>표절 및 타 공모전 입상작으로 확인될 경우 수상이 취소되며, 상장 및 부상은 반환해야 합니다.</li>
-          <li>출품작은 반드시 규격에 맞는 작품이어야 합니다.</li>
-          <li>출품원서 및 제출 자료는 반환하지 않습니다.</li>
-          <li>1차 심사 종료 후 도록비와 캔버스 판넬 제작비는 별도 입금합니다.</li>
-          <li>캔버스 판넬 제작비는 1점 5만 원입니다.</li>
-          <li>작품 반출은 2026년 12월 29일 화요일 오전 10시부터 12시까지 진행합니다.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="cta" id="apply">
-      <div class="section-inner">
-        <div class="cta-card">
-          <div class="section-label">Apply Now</div>
-          <h2>지금 지원하세요</h2>
-          <p>접수 마감: 2026년 11월 29일</p>
-
-          <div class="hero-buttons">
-            <a class="btn btn-primary" href="YOUR_GOOGLE_FORM_URL" target="_blank" rel="noopener">
-              지원서 작성
-            </a>
-            <a class="btn btn-secondary" href="YOUR_PDF_URL" target="_blank" rel="noopener">
-              요강 PDF 보기
-            </a>
-          </div>
+        <div class="surface-cta">
+          <a href="mailto:YOUR_EMAIL">회원가입 문의</a>
+          <a href="mailto:YOUR_EMAIL">교육 프로그램 문의</a>
+          <a href="mailto:YOUR_EMAIL">협회 소식 받아보기</a>
+          <a href="mailto:YOUR_EMAIL">세미나 참여하기</a>
+          <a href="mailto:YOUR_EMAIL">워크숍 신청하기</a>
         </div>
       </div>
     </section>
@@ -1464,82 +1390,186 @@
 
   <footer class="footer">
     <div class="footer-inner">
-      <div>
-        <strong>제2회 2026 대한민국 AI 창조공모대전</strong><br />
-        주최 / 주관: 사단법인 한국창조미술협회
+      <div class="footer-contact">
+        <strong>Contact</strong>
+        <span>이메일: <a href="mailto:YOUR_EMAIL">YOUR_EMAIL</a></span>
+        <span>/</span>
+        <span>연락처: YOUR_PHONE</span>
+        <span>/</span>
+        <span>주소: YOUR_ADDRESS</span>
       </div>
-      <div>
-        서울시 종로구 삼일대로 32길 36, B108호<br />
-        문의: 02-745-5092
-      </div>
+      <div>© 2026 AI Content Creation Association.</div>
     </div>
   </footer>
 
   <script>
-    const header = document.getElementById("siteHeader");
-    const mobileToggle = document.querySelector(".mobile-toggle");
-    const navMenu = document.querySelector(".nav-menu");
-    const artObject = document.getElementById("artObject");
+    const activities = [
+      {
+        number: "01",
+        title: "AI 교육 및 역량 강화",
+        desc: "AI 교육 및 역량 강화는 미래 직업 체험 교육, AI 활용 교육, AI 콘텐츠 교육을 통해 학습자가 AI를 창의적 표현 도구로 이해하고 활용할 수 있도록 돕습니다. 또한 AI 윤리와 저작권, 디지털 시민성 교육을 함께 다루어 책임감 있는 AI 활용 역량을 기릅니다."
+      },
+      {
+        number: "02",
+        title: "AI 교육 프로그램 연구/개발",
+        desc: "AI 교육 프로그램 연구/개발은 교육 현장과 창작 환경에 적합한 AI 교육 과정과 창작 프로그램을 설계하는 활동입니다. AI 윤리교육 가이드 연구를 함께 진행하여 기술 활용뿐 아니라 올바른 사용 기준까지 포함한 교육 체계를 마련합니다."
+      },
+      {
+        number: "03",
+        title: "AI 창작 및 전시",
+        desc: "AI 창작 및 전시는 AI 한글 콘텐츠, 동화책, 시, 수필, 에세이, 캐릭터, 이모티콘, 포스터, 카드뉴스, 브랜딩 디자인, 디지털 아트워크, 미디어아트, 숏폼과 영상 등 다양한 창작 결과물을 기획하고 소개하는 활동입니다."
+      },
+      {
+        number: "04",
+        title: "AI 공모전",
+        desc: "AI 공모전은 AI 콘텐츠 공모전을 기획하고 운영하며, 창작물 전시와 수상작 발표회, 성과 공유 프로그램을 통해 우수한 AI 콘텐츠를 발굴하고 확산하는 활동입니다. 또한 세미나와 워크숍, 우수 콘텐츠 아카이브 구축으로 창작 생태계를 확장합니다."
+      }
+    ];
 
-    mobileToggle.addEventListener("click", () => {
-      navMenu.classList.toggle("open");
-    });
+    const communityItems = [
+      {
+        number: "01",
+        title: "교류",
+        desc: "AI 창작자, 교육자, 예술가, 기획자가 함께 관점을 나누고 경험을 공유하는 교류 기반의 커뮤니티를 운영합니다."
+      },
+      {
+        number: "02",
+        title: "세미나",
+        desc: "AI 창작 기술, 윤리, 저작권, 교육 사례를 공유하는 세미나를 통해 변화하는 AI 콘텐츠 환경을 함께 이해합니다."
+      },
+      {
+        number: "03",
+        title: "워크숍",
+        desc: "프로젝트 기반의 실습형 AI 콘텐츠 창작 워크숍을 통해 아이디어를 구체적인 결과물로 발전시키는 경험을 제공합니다."
+      }
+    ];
 
-    document.querySelectorAll(".nav-menu a").forEach((link) => {
-      link.addEventListener("click", () => {
-        navMenu.classList.remove("open");
+    const activityNumber = document.getElementById("activityNumber");
+    const activityTitle = document.getElementById("activityTitle");
+    const activityDesc = document.getElementById("activityDesc");
+    const activityTabs = document.querySelectorAll(".activity-tab");
+    const activitySection = document.getElementById("activities");
+
+    function setActivity(index) {
+      const item = activities[index];
+      activityNumber.textContent = item.number;
+      activityTitle.textContent = item.title;
+      activityDesc.textContent = item.desc;
+
+      activityTabs.forEach((tab) => {
+        tab.classList.toggle("active", Number(tab.dataset.index) === index);
+      });
+    }
+
+    function updateActivityByScroll() {
+      if (!activitySection || window.innerWidth <= 1020) return;
+      const rect = activitySection.getBoundingClientRect();
+      const total = activitySection.offsetHeight - window.innerHeight;
+      const progress = Math.min(Math.max(-rect.top / total, 0), 0.999);
+      const index = Math.floor(progress * activities.length);
+      setActivity(index);
+    }
+
+    const communitySection = document.getElementById("community");
+    const communityWipe = document.getElementById("communityWipe");
+    const communityNumber = document.getElementById("communityNumber");
+    const communityTitle = document.getElementById("communityTitle");
+    const communityDesc = document.getElementById("communityDesc");
+    const communityTabs = document.querySelectorAll(".community-tab");
+    let currentCommunity = 0;
+
+    function setCommunity(index) {
+      if (index === currentCommunity) return;
+      currentCommunity = index;
+
+      communityWipe.classList.remove("run");
+      void communityWipe.offsetWidth;
+      communityWipe.classList.add("run");
+
+      setTimeout(() => {
+        const item = communityItems[index];
+        communityNumber.textContent = item.number;
+        communityTitle.textContent = item.title;
+        communityDesc.textContent = item.desc;
+
+        communityTabs.forEach((tab) => {
+          tab.classList.toggle("active", Number(tab.dataset.index) === index);
+        });
+      }, 220);
+    }
+
+    function updateCommunityByScroll() {
+      if (!communitySection || window.innerWidth <= 1020) return;
+      const rect = communitySection.getBoundingClientRect();
+      const total = communitySection.offsetHeight - window.innerHeight;
+      const progress = Math.min(Math.max(-rect.top / total, 0), 0.999);
+      const index = Math.floor(progress * communityItems.length);
+      setCommunity(index);
+    }
+
+    const historyButtons = document.querySelectorAll(".history-toggle");
+    historyButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const group = button.closest(".history-group");
+        const isOpen = group.classList.toggle("open");
+        button.setAttribute("aria-expanded", isOpen ? "true" : "false");
       });
     });
 
-    function handleHeaderVisibility() {
-      const heroHeight = document.querySelector(".hero").offsetHeight;
-      if (window.scrollY > heroHeight * 0.72) {
-        header.classList.add("visible");
-      } else {
-        header.classList.remove("visible");
-      }
-    }
+    const revealTargets = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add("visible");
+      });
+    }, { threshold: 0.12 });
+    revealTargets.forEach((target) => observer.observe(target));
 
-    window.addEventListener("scroll", handleHeaderVisibility);
-    window.addEventListener("load", handleHeaderVisibility);
-
-    let variantIndex = 0;
-    const variantTotal = 4;
-
-    function changeArtVariant() {
-      artObject.classList.add("transitioning");
-
-      setTimeout(() => {
-        variantIndex = (variantIndex + 1) % variantTotal;
-        artObject.className = `art-object variant-${variantIndex} transitioning`;
-      }, 540);
-
-      setTimeout(() => {
-        artObject.classList.remove("transitioning");
-      }, 1080);
-    }
-
-    setInterval(changeArtVariant, 4700);
-
+    const heroTopNav = document.getElementById("heroTopNav");
+    const rightNav = document.getElementById("rightNav");
+    const hero = document.getElementById("home");
     const sections = document.querySelectorAll("section[id]");
-    const navLinks = document.querySelectorAll(".nav-menu a");
+    const navLinks = document.querySelectorAll(".right-nav a, .mobile-nav a");
+    const lightSections = ["about", "activities", "education", "news"];
 
-    window.addEventListener("scroll", () => {
+    function handleNavVisibility() {
+      const heroHeight = hero.offsetHeight;
+      const passedHero = window.scrollY > heroHeight * 0.76;
+      rightNav.classList.toggle("visible", passedHero);
+      heroTopNav.classList.toggle("hidden", passedHero);
+    }
+
+    function updateActiveNav() {
       let current = "";
-
       sections.forEach((section) => {
-        const sectionTop = section.offsetTop - 120;
-        if (window.scrollY >= sectionTop) {
-          current = section.getAttribute("id");
-        }
+        const top = section.offsetTop - 160;
+        if (window.scrollY >= top) current = section.getAttribute("id");
       });
 
       navLinks.forEach((link) => {
-        link.style.color = "";
-        if (link.getAttribute("href") === "#" + current) {
-          link.style.color = "var(--amber-2)";
-        }
+        link.classList.toggle("active", link.getAttribute("href") === "#" + current);
       });
+
+      rightNav.classList.toggle("light-mode", lightSections.includes(current));
+    }
+
+    const overlayTargets = document.querySelectorAll(".program-item, .news-row");
+    overlayTargets.forEach((item) => {
+      item.addEventListener("mouseenter", () => rightNav.classList.add("overlay-dark"));
+      item.addEventListener("mouseleave", () => rightNav.classList.remove("overlay-dark"));
+    });
+
+    window.addEventListener("scroll", () => {
+      updateActivityByScroll();
+      updateCommunityByScroll();
+      handleNavVisibility();
+      updateActiveNav();
+    });
+
+    window.addEventListener("load", () => {
+      updateActivityByScroll();
+      updateCommunityByScroll();
+      handleNavVisibility();
+      updateActiveNav();
     });
   </script>
 </body>
