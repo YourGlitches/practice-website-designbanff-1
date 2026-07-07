@@ -4,12 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI 콘텐츠 창작 협회 | AI Content Creation Association</title>
-  <meta name="description" content="AI 콘텐츠 창작 협회 공식 홈페이지. AI 교육, 창작, 전시, 공모전, 커뮤니티 활동을 소개합니다." />
-  <meta property="og:title" content="AI 콘텐츠 창작 협회" />
-  <meta property="og:description" content="AI와 함께 창작하는 콘텐츠, 함께 여는 새로운 미래" />
-  <meta property="og:type" content="website" />
-
+  <meta name="description" content="AI 콘텐츠 창작 교육, 윤리, 전시, 공모전, 워크숍을 통해 미래 콘텐츠 생태계를 만들어가는 AI 콘텐츠 창작 협회 홈페이지입니다." />
   <style>
+
     :root {
       --black: #000000;
       --deep: #050505;
@@ -25,7 +22,9 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
     html { scroll-behavior: smooth; }
+
     body {
       font-family: Pretendard, -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
       background: var(--black);
@@ -34,178 +33,104 @@
       word-break: keep-all;
       overflow-x: hidden;
     }
-    a { color: inherit; text-decoration: none; }
-    button { font: inherit; border: 0; background: none; color: inherit; cursor: pointer; }
 
-    .hero-top-nav {
+    a { color: inherit; text-decoration: none; }
+
+    .top-nav {
       position: fixed;
-      left: 24px;
-      right: 24px;
-      top: 22px;
-      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      z-index: 9998;
+      height: 66px;
+      padding: 0 28px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
-      padding: 14px 18px;
-      border-radius: 999px;
-      background: rgba(0,0,0,0.22);
-      border: 1px solid rgba(255,255,255,0.12);
-      backdrop-filter: blur(14px);
-      transition: opacity 0.35s ease, transform 0.35s ease, pointer-events 0.35s ease;
+      gap: 28px;
+      background: var(--white);
+      color: var(--black);
+      transition: opacity .3s ease, transform .3s ease;
     }
 
-    .hero-top-nav.hidden {
+    .top-nav.hide {
       opacity: 0;
-      transform: translateY(-16px);
+      transform: translateY(-100%);
       pointer-events: none;
     }
 
     .top-logo {
-      font-size: 14px;
-      font-weight: 780;
-      letter-spacing: -0.04em;
-      color: var(--white);
+      font-size: 16px;
+      font-weight: 840;
+      letter-spacing: -0.045em;
       white-space: nowrap;
     }
 
-    .top-links {
+    .top-menu {
       display: flex;
-      gap: 18px;
       align-items: center;
-      flex-wrap: wrap;
       justify-content: flex-end;
+      gap: 28px;
+      font-size: 14px;
+      font-weight: 720;
+      letter-spacing: -0.035em;
+      height: 100%;
     }
 
-    .top-links a {
-      color: rgba(255,255,255,0.66);
-      font-size: 13px;
-      letter-spacing: -0.02em;
-      transition: color 0.25s ease;
+    .top-menu > a,
+    .top-dropdown > a {
+      height: 66px;
+      display: flex;
+      align-items: center;
+      color: var(--black);
     }
 
-    .top-links a:hover {
+    .top-menu a:hover {
       color: var(--cyan);
     }
 
-    .right-nav {
-      position: fixed;
-      right: 22px;
-      top: 50%;
-      transform: translateY(-50%) translateX(24px);
-      z-index: 9999;
-      width: 220px;
+    .top-dropdown {
+      position: relative;
+      height: 66px;
+      display: flex;
+      align-items: center;
+    }
+
+    .dropdown-panel {
+      position: absolute;
+      top: 66px;
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      min-width: 250px;
+      padding: 16px 0;
+      background: var(--white);
+      color: var(--black);
       opacity: 0;
       pointer-events: none;
-      padding: 16px 14px;
-      border-radius: 24px;
-      background: rgba(0,0,0,0.18);
-      border: 1px solid rgba(255,255,255,0.08);
-      backdrop-filter: blur(10px);
-      transition: opacity 0.35s ease, transform 0.35s ease, background 0.25s ease;
+      transition: opacity .22s ease, transform .22s ease;
+      display: grid;
+      gap: 0;
     }
 
-    .right-nav.visible {
+    .top-dropdown:hover .dropdown-panel,
+    .top-dropdown:focus-within .dropdown-panel {
       opacity: 1;
       pointer-events: auto;
-      transform: translateY(-50%) translateX(0);
+      transform: translateX(-50%) translateY(0);
     }
 
-    .right-nav ul {
-      list-style: none;
-      display: grid;
-      gap: 16px;
-    }
-
-    .right-nav a {
-      display: grid;
-      grid-template-columns: 1fr 32px 10px;
-      align-items: center;
-      gap: 10px;
-      min-height: 22px;
-      color: rgba(255,255,255,0.3);
-      font-size: 14px;
-      text-align: right;
+    .dropdown-panel a {
+      display: block;
+      padding: 10px 20px;
+      font-size: 13px;
+      font-weight: 650;
+      line-height: 1.3;
       white-space: nowrap;
     }
 
-    .right-nav .label {
-      opacity: 0;
-      transform: translateX(8px);
-      transition: opacity 0.25s ease, transform 0.25s ease, color 0.25s ease;
-    }
-
-    .right-nav:hover .label,
-    .right-nav a.active .label {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    .right-nav .num {
-      font-size: 13px;
-      color: rgba(255,255,255,0.34);
-      transition: color 0.25s ease;
-    }
-
-    .right-nav .dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.22);
-      transition: background 0.25s ease, box-shadow 0.25s ease;
-    }
-
-    .right-nav.light-mode {
-      background: rgba(255,255,255,0.3);
-      border-color: rgba(0,0,0,0.08);
-    }
-
-    .right-nav.light-mode .num {
-      color: rgba(0,0,0,0.42);
-    }
-
-    .right-nav.light-mode .dot {
-      background: rgba(0,0,0,0.26);
-    }
-
-    .right-nav.light-mode a {
-      color: rgba(0,0,0,0.42);
-    }
-
-    .right-nav.overlay-dark {
-      background: rgba(0,0,0,0.34);
-      border-color: rgba(255,255,255,0.1);
-    }
-
-    .right-nav.overlay-dark a,
-    .right-nav.overlay-dark .num {
-      color: rgba(255,255,255,0.78);
-    }
-
-    .right-nav.overlay-dark .dot {
-      background: rgba(255,255,255,0.72);
-    }
-
-    .right-nav a.active .label,
-    .right-nav a.active .num,
-    .right-nav.overlay-dark a.active .label,
-    .right-nav.overlay-dark a.active .num {
+    .dropdown-panel a:hover {
       color: var(--cyan);
-    }
-
-    .right-nav a.active .dot,
-    .right-nav.overlay-dark a.active .dot {
-      background: var(--cyan);
-      box-shadow: 0 0 14px rgba(0,184,255,0.6);
-    }
-
-    .right-nav a:hover .label,
-    .right-nav a:hover .num {
-      color: var(--cyan);
-    }
-
-    .right-nav a:hover .dot {
-      background: var(--cyan);
+      background: rgba(0,0,0,0.03);
     }
 
     .mobile-nav {
@@ -217,9 +142,7 @@
       z-index: 9999;
       padding: 10px;
       border-radius: 999px;
-      background: rgba(0,0,0,0.72);
-      border: 1px solid rgba(255,255,255,0.12);
-      backdrop-filter: blur(18px);
+      background: rgba(0,0,0,0.76);
       overflow-x: auto;
       gap: 8px;
     }
@@ -238,6 +161,99 @@
       color: var(--black);
     }
 
+
+    .right-nav {
+      position: fixed;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%) translateX(24px);
+      z-index: 9999;
+      width: 220px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease, transform 0.35s ease;
+      background: transparent;
+    }
+
+    .right-nav.visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(-50%) translateX(0);
+    }
+
+    .right-nav ul {
+      list-style: none;
+      display: grid;
+      gap: 16px;
+    }
+
+    .right-nav a {
+      display: grid;
+      grid-template-columns: 1fr 34px 9px;
+      align-items: center;
+      gap: 10px;
+      min-height: 22px;
+      color: rgba(255,255,255,0.34);
+      font-size: 14px;
+      font-weight: 780;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .right-nav .label {
+      opacity: 0;
+      transform: translateX(8px);
+      transition: opacity 0.25s ease, transform 0.25s ease, color 0.25s ease;
+    }
+
+    .right-nav:hover .label,
+    .right-nav a.active .label {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .right-nav .num {
+      font-size: 13px;
+      font-weight: 820;
+      color: rgba(255,255,255,0.34);
+      transition: color 0.25s ease;
+    }
+
+    .right-nav .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.28);
+      transition: background 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .right-nav.light-mode .num {
+      color: rgba(0,0,0,0.44);
+    }
+
+    .right-nav.light-mode .dot {
+      background: rgba(0,0,0,0.34);
+    }
+
+    .right-nav a.active .label,
+    .right-nav a.active .num {
+      color: var(--cyan);
+    }
+
+    .right-nav a.active .dot {
+      background: var(--cyan);
+      box-shadow: 0 0 14px rgba(0,184,255,0.6);
+    }
+
+    .right-nav a:hover .label,
+    .right-nav a:hover .num {
+      color: var(--cyan);
+    }
+
+    .right-nav a:hover .dot {
+      background: var(--cyan);
+    }
+
     .hero {
       min-height: 100vh;
       display: flex;
@@ -246,45 +262,60 @@
       padding: 120px 24px 90px;
       position: relative;
       overflow: hidden;
-      background:
-        radial-gradient(circle at 50% 34%, rgba(0,184,255,0.08), transparent 36%),
-        var(--black);
+      background: var(--black);
     }
 
     .hero-inner {
       width: 100%;
       max-width: var(--max);
-      min-height: 620px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      min-height: 720px;
+      display: grid;
+      place-items: center;
       text-align: center;
       position: relative;
-      z-index: 2;
     }
 
-    .hero-kicker {
-      color: var(--cyan);
-      font-size: 13px;
-      font-weight: 850;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      margin-bottom: 28px;
+    .hero-title-wrap {
+      position: relative;
+      z-index: 5;
+      display: grid;
+      place-items: center;
     }
 
     .hero-title {
-      font-size: clamp(64px, 11vw, 154px);
-      line-height: 0.9;
-      letter-spacing: -0.095em;
-      font-weight: 880;
-      margin-bottom: 28px;
+      font-size: clamp(58px, 9.5vw, 142px);
+      line-height: 1.04;
+      letter-spacing: -0.048em;
+      font-weight: 860;
+      max-width: 1120px;
     }
 
-    .hero-title-en {
-      color: var(--gray);
-      font-size: clamp(17px, 1.65vw, 24px);
-      letter-spacing: -0.02em;
+    .hero-keyword {
+      position: absolute;
+      z-index: 3;
+      color: rgba(255,255,255,0.36);
+      font-size: clamp(13px, 1.35vw, 18px);
+      font-weight: 760;
+      letter-spacing: -0.03em;
+      white-space: nowrap;
+      animation: keywordPulse 7s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .hero-keyword.k1 { top: 18%; left: 9%; animation-delay: 0s; }
+    .hero-keyword.k2 { top: 20%; right: 12%; animation-delay: .6s; color: rgba(0,184,255,0.66); }
+    .hero-keyword.k3 { top: 37%; left: 4%; animation-delay: 1.2s; }
+    .hero-keyword.k4 { top: 38%; right: 5%; animation-delay: 1.8s; }
+    .hero-keyword.k5 { bottom: 31%; left: 13%; animation-delay: 2.4s; color: rgba(0,184,255,0.58); }
+    .hero-keyword.k6 { bottom: 29%; right: 14%; animation-delay: 3s; }
+    .hero-keyword.k7 { bottom: 16%; left: 28%; animation-delay: 3.6s; }
+    .hero-keyword.k8 { bottom: 15%; right: 28%; animation-delay: 4.2s; }
+    .hero-keyword.k9 { top: 12%; left: 40%; animation-delay: 4.8s; }
+    .hero-keyword.k10 { bottom: 9%; left: 50%; transform: translateX(-50%); animation-delay: 5.4s; color: rgba(0,184,255,0.55); }
+
+    @keyframes keywordPulse {
+      0%, 100% { opacity: 0.32; }
+      50% { opacity: 0.82; }
     }
 
     section {
@@ -331,123 +362,101 @@
     }
 
     .about-text {
-      display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      gap: 56px;
-      align-items: start;
       border-top: 1px solid var(--line-dark);
-      padding-top: 44px;
-    }
-
-    .about-lead {
-      font-size: clamp(28px, 3.8vw, 52px);
-      line-height: 1.16;
-      letter-spacing: -0.06em;
-      font-weight: 780;
+      padding-top: 46px;
+      display: flex;
+      justify-content: center;
     }
 
     .about-body {
-      display: grid;
-      gap: 22px;
+      max-width: 850px;
       color: #424245;
-      font-size: 18px;
-      line-height: 1.95;
+      font-size: 19px;
+      line-height: 2.05;
+      text-align: center;
+      white-space: pre-line;
     }
 
-    .history-timeline {
+    .records-title-only {
+      margin-bottom: 54px;
+    }
+
+    .timeline {
       border-top: 1px solid var(--line);
     }
 
-    .history-group {
+    .timeline-group {
       border-bottom: 1px solid var(--line);
     }
 
-    .history-toggle {
+    .timeline-button {
       width: 100%;
-      display: grid;
-      grid-template-columns: 0.36fr 1fr 48px;
-      gap: 56px;
-      align-items: center;
-      padding: 34px 0;
-      text-align: left;
-    }
-
-    .history-year {
-      font-size: clamp(46px, 6vw, 78px);
-      line-height: 0.95;
-      letter-spacing: -0.075em;
-      font-weight: 840;
+      border: 0;
+      background: transparent;
       color: var(--white);
+      display: grid;
+      grid-template-columns: 180px 1fr 34px;
+      align-items: center;
+      gap: 30px;
+      padding: 34px 0;
+      cursor: pointer;
+      text-align: left;
+      font-family: inherit;
     }
 
-    .history-summary {
+    .timeline-year {
+      font-size: clamp(42px, 5vw, 74px);
+      line-height: .95;
+      letter-spacing: -0.07em;
+      font-weight: 840;
+    }
+
+    .timeline-summary {
       color: var(--gray2);
       font-size: 18px;
+      line-height: 1.5;
     }
 
-    .history-icon {
-      width: 42px;
-      height: 42px;
-      border: 1px solid var(--line);
-      border-radius: 50%;
+    .timeline-icon {
+      justify-self: end;
+      font-size: 34px;
+      font-weight: 360;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .timeline-panel {
+      display: none;
+      padding: 0 0 44px 210px;
+    }
+
+    .timeline-group.open .timeline-panel {
+      display: block;
+    }
+
+    .timeline-item {
       display: grid;
-      place-items: center;
-      color: var(--cyan);
-      font-size: 22px;
-      transition: transform 0.25s ease;
-    }
-
-    .history-group.open .history-icon {
-      transform: rotate(45deg);
-    }
-
-    .history-panel {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.42s ease;
-    }
-
-    .history-group.open .history-panel {
-      max-height: 900px;
-    }
-
-    .history-items {
-      display: grid;
-      gap: 0;
-      margin-left: calc(36% + 56px);
-      padding-bottom: 38px;
-    }
-
-    .history-item {
-      display: grid;
-      grid-template-columns: 0.28fr 1fr;
-      gap: 28px;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 34px;
       padding: 22px 0;
-      border-top: 1px solid var(--line);
+      border-top: 1px solid rgba(255,255,255,0.10);
     }
 
-    .history-label {
-      color: var(--cyan);
-      font-size: 13px;
-      font-weight: 850;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
-    .history-title {
+    .timeline-item h3 {
       font-size: 22px;
+      line-height: 1.25;
       letter-spacing: -0.045em;
       font-weight: 760;
-      margin-bottom: 6px;
     }
 
-    .history-desc {
+    .timeline-item p {
       color: var(--gray2);
       font-size: 16px;
+      line-height: 1.7;
     }
 
     .vision {
-      min-height: 76vh;
+      min-height: 72vh;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -456,11 +465,16 @@
     }
 
     .vision h2 {
-      max-width: 1100px;
-      font-size: clamp(48px, 8.5vw, 128px);
+      max-width: 1180px;
+      font-size: min(7.2vw, 112px);
       line-height: 1.08;
       letter-spacing: -0.04em;
       font-weight: 360;
+    }
+
+    .vision h2 span {
+      display: block;
+      white-space: nowrap;
     }
 
     .vision strong {
@@ -470,9 +484,14 @@
 
     .activities {
       min-height: 430vh;
-      padding: 130px 24px 0;
+      padding: 100px 24px 0;
       background: var(--soft);
       color: var(--black);
+    }
+
+    .sticky-section-head {
+      max-width: var(--max);
+      margin: 0 auto 16px;
     }
 
     .activity-sticky {
@@ -485,7 +504,7 @@
       grid-template-columns: 0.42fr 1fr;
       gap: 56px;
       align-items: center;
-      padding: 90px 0;
+      padding: 38px 0 90px;
     }
 
     .activity-list {
@@ -560,69 +579,43 @@
 
     .program-item {
       position: relative;
-      isolation: isolate;
+      display: block;
       padding: 34px 30px;
       border-bottom: 1px solid var(--line-dark);
       border-right: 1px solid var(--line-dark);
-      transition: color 0.25s ease;
-      display: block;
+      color: var(--black);
+      min-height: 190px;
     }
 
     .program-item:nth-child(2n) {
       border-right: 0;
     }
 
-    .program-item::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      width: 100vw;
-      height: 100%;
-      background: var(--dark-hover);
-      transform: scaleX(0);
-      transition: transform 0.38s ease;
-      z-index: -1;
-    }
-
-    .program-item:nth-child(odd)::before {
-      right: 0;
-      transform-origin: right;
-    }
-
-    .program-item:nth-child(even)::before {
-      left: 0;
-      transform-origin: left;
-    }
-
-    .program-item:hover {
-      z-index: 360;
-      color: var(--white);
-    }
-
-    .program-item:hover::before {
-      transform: scaleX(1);
-    }
-
     .program-item h3 {
       font-size: 25px;
       letter-spacing: -0.045em;
       margin-bottom: 12px;
-      transition: color 0.25s ease;
     }
 
     .program-item p {
       color: #424245;
       font-size: 16px;
       line-height: 1.78;
-      transition: color 0.25s ease;
+      max-width: 470px;
     }
 
-    .program-item:hover h3 {
-      color: var(--white);
+    .program-item::after {
+      content: "↗";
+      position: absolute;
+      right: 28px;
+      bottom: 26px;
+      color: var(--gray);
+      font-size: 18px;
+      transition: transform .25s ease;
     }
 
-    .program-item:hover p {
-      color: rgba(255,255,255,0.82);
+    .program-item:hover::after {
+      transform: translate(4px, -4px);
     }
 
     .creation-layout {
@@ -719,7 +712,7 @@
 
     .community-sticky-section {
       min-height: 330vh;
-      padding: 130px 24px 0;
+      padding: 100px 24px 0;
       background: var(--black);
       color: var(--white);
       position: relative;
@@ -760,7 +753,7 @@
       grid-template-columns: 0.42fr 1fr;
       gap: 56px;
       align-items: center;
-      padding: 90px 0;
+      padding: 38px 0 90px;
       z-index: 2;
     }
 
@@ -824,78 +817,46 @@
 
     .news-row {
       position: relative;
-      isolation: isolate;
       display: grid;
-      grid-template-columns: 130px 1fr 120px;
+      grid-template-columns: 130px 1fr 120px 24px;
       gap: 26px;
       align-items: start;
       padding: 28px 0;
       border-bottom: 1px solid var(--line-dark);
-      transition: color 0.25s ease;
-    }
-
-    .news-row::before {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 0;
-      width: 100vw;
-      height: 100%;
-      background: var(--dark-hover);
-      transform: translateX(-50%) scaleX(0);
-      transform-origin: left;
-      transition: transform 0.35s ease;
-      z-index: -1;
-    }
-
-    .news-row:hover {
-      z-index: 360;
-      color: var(--white);
-    }
-
-    .news-row:hover::before {
-      transform: translateX(-50%) scaleX(1);
+      color: var(--black);
     }
 
     .news-category {
       color: var(--gray);
       font-size: 14px;
       font-weight: 800;
-      transition: color 0.25s ease;
     }
 
     .news-title {
       font-size: 23px;
       letter-spacing: -0.045em;
       font-weight: 780;
-      transition: color 0.25s ease;
     }
 
     .news-desc {
       color: #424245;
       margin-top: 6px;
       font-size: 15px;
-      transition: color 0.25s ease;
     }
 
     .news-date {
       color: var(--gray);
       text-align: right;
       font-size: 14px;
-      transition: color 0.25s ease;
     }
 
-    .news-row:hover .news-category {
-      color: var(--cyan);
+    .news-arrow {
+      color: var(--gray);
+      transition: transform .25s ease;
     }
 
-    .news-row:hover .news-title {
-      color: var(--white);
-    }
-
-    .news-row:hover .news-desc,
-    .news-row:hover .news-date {
-      color: rgba(255,255,255,0.78);
+    .news-row:hover .news-arrow {
+      transform: translate(4px, -4px);
     }
 
     .contact {
@@ -913,10 +874,14 @@
     }
 
     .contact h2 {
-      font-size: clamp(42px, 6vw, 88px);
+      font-size: clamp(40px, 6vw, 88px);
       line-height: 1.04;
       letter-spacing: -0.055em;
       font-weight: 800;
+    }
+
+    .contact h2 span {
+      display: block;
     }
 
     .surface-cta {
@@ -976,19 +941,9 @@
       gap: 8px;
     }
 
-    .footer strong {
-      color: var(--white);
-      font-size: 12px;
-    }
-
-    .footer a {
-      color: var(--gray2);
-      transition: color 0.25s ease;
-    }
-
-    .footer a:hover {
-      color: var(--cyan);
-    }
+    .footer strong { color: var(--white); font-size: 12px; }
+    .footer a { color: var(--gray2); transition: color 0.25s ease; }
+    .footer a:hover { color: var(--cyan); }
 
     .reveal {
       opacity: 0;
@@ -1002,25 +957,13 @@
     }
 
     @media (max-width: 1020px) {
-      .right-nav {
-        display: none;
-      }
+      .top-menu { display: none; }
+      .right-nav { display: none; }
+      .mobile-nav { display: flex; }
 
-      .hero-top-nav {
-        display: none;
-      }
-
-      .mobile-nav {
-        display: flex;
-      }
-
-      section {
-        padding: 94px 20px;
-      }
+      section { padding: 94px 20px; }
 
       .section-head,
-      .about-text,
-      .history-toggle,
       .activity-sticky,
       .creation-layout,
       .community-sticky,
@@ -1028,26 +971,19 @@
         grid-template-columns: 1fr;
       }
 
-      .history-items {
-        margin-left: 0;
-      }
-
-      .history-item {
-        grid-template-columns: 1fr;
-        gap: 8px;
-      }
-
       .activities,
       .community-sticky-section {
         min-height: auto;
-        padding: 94px 20px;
+        padding: 90px 20px 0;
       }
+
+      .sticky-section-head { margin-bottom: 0; }
 
       .activity-sticky,
       .community-sticky {
         position: relative;
         min-height: auto;
-        padding: 60px 0 0;
+        padding: 46px 0 90px;
       }
 
       .activity-content,
@@ -1057,23 +993,24 @@
         min-height: auto;
       }
 
-      .program-list {
+      .program-list { grid-template-columns: 1fr; }
+      .program-item { border-right: 0; }
+
+      .timeline-button {
+        grid-template-columns: 1fr 34px;
+      }
+
+      .timeline-summary {
+        grid-column: 1 / -1;
+      }
+
+      .timeline-panel {
+        padding-left: 0;
+      }
+
+      .timeline-item {
         grid-template-columns: 1fr;
-      }
-
-      .program-item {
-        border-right: 0;
-      }
-
-      .program-item::before {
-        left: 50% !important;
-        right: auto !important;
-        transform-origin: center !important;
-        transform: translateX(-50%) scaleX(0);
-      }
-
-      .program-item:hover::before {
-        transform: translateX(-50%) scaleX(1);
+        gap: 8px;
       }
 
       .footer-inner {
@@ -1083,20 +1020,37 @@
     }
 
     @media (max-width: 680px) {
+      .top-nav { padding: 0 18px; height: 58px; }
+      .top-logo { font-size: 14px; }
+
       .hero {
-        padding: 80px 18px 70px;
+        padding: 82px 18px 70px;
       }
 
       .hero-inner {
-        min-height: 620px;
+        min-height: 650px;
       }
 
       .hero-title {
-        font-size: 58px;
+        font-size: clamp(48px, 15vw, 88px);
+        max-width: 500px;
       }
 
-      .section-title {
-        font-size: 40px;
+      .hero-keyword {
+        font-size: 12px;
+      }
+
+      .hero-keyword.k3,
+      .hero-keyword.k4,
+      .hero-keyword.k7,
+      .hero-keyword.k8 {
+        display: none;
+      }
+
+      .section-title { font-size: 40px; }
+
+      .vision h2 {
+        font-size: clamp(17px, 6.2vw, 44px);
       }
 
       .activity-title,
@@ -1105,17 +1059,20 @@
         font-size: 40px;
       }
 
-      .vision h2 {
-        font-size: 48px;
-      }
-
       .news-row {
-        grid-template-columns: 1fr;
-        gap: 8px;
+        grid-template-columns: 1fr 24px;
+        gap: 8px 16px;
       }
 
+      .news-category,
       .news-date {
+        grid-column: 1 / 2;
         text-align: left;
+      }
+
+      .news-arrow {
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
       }
 
       .surface-cta a {
@@ -1129,35 +1086,49 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      *,
-      *::before,
-      *::after {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
         animation-duration: 0.001ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.001ms !important;
       }
     }
+
   </style>
 </head>
-
 <body>
-  <nav class="hero-top-nav" id="heroTopNav" aria-label="상단 네비게이션">
-    <a class="top-logo" href="#home">AI 콘텐츠 창작 협회</a>
-    <div class="top-links">
-      <a href="#about">About</a>
-      <a href="#records">History</a>
-      <a href="#activities">Activities</a>
-      <a href="#education">Education</a>
-      <a href="#creation">Creation</a>
-      <a href="#community">Community</a>
-      <a href="#news">News</a>
-      <a href="#contact">Contact</a>
-    </div>
-  </nav>
+
+  <header class="top-nav" id="topNav">
+    <a class="top-logo" href="index.html">AI 콘텐츠 창작 협회</a>
+    <nav class="top-menu" aria-label="상단 메뉴">
+      <a href="index.html#about">협회 소개</a>
+      <a href="index.html#records">약력</a>
+      <a href="index.html#activities">활동 분야</a>
+      <div class="top-dropdown">
+        <a href="index.html#education">교육</a>
+        <div class="dropdown-panel">
+          <a href="education-basic.html">AI 창작 입문 교육</a>
+<a href="education-image-video.html">AI 이미지/영상 제작 교육</a>
+<a href="education-ethics.html">AI 윤리와 저작권</a>
+<a href="education-planning-workshop.html">AI 콘텐츠 기획 워크숍</a>
+<a href="education-instructor.html">AI 창작 지도사 과정</a>
+<a href="education-digital-citizenship.html">디지털 시민성 교육</a>
+        </div>
+      </div>
+      <a href="index.html#creation">창작</a>
+      <a href="index.html#community">커뮤니티</a>
+      <div class="top-dropdown">
+        <a href="index.html#news">소식/알림</a>
+        <div class="dropdown-panel">
+          <a href="news-seminar.html">AI 창작 세미나 개최 안내</a>
+<a href="news-exhibition.html">생성AI 예술 작품전 초청</a>
+<a href="news-newsletter.html">AI 콘텐츠 창작 협회 활동 소식</a>
+        </div>
+      </div>
+      <a href="index.html#contact">문의</a>
+    </nav>
+  </header>
+
 
   <nav class="right-nav" id="rightNav" aria-label="우측 네비게이션">
     <ul>
@@ -1173,21 +1144,35 @@
     </ul>
   </nav>
 
+
   <nav class="mobile-nav" aria-label="모바일 네비게이션">
     <a href="#about">소개</a>
     <a href="#records">약력</a>
     <a href="#activities">활동</a>
     <a href="#education">교육</a>
     <a href="#creation">창작</a>
+    <a href="#news">소식</a>
     <a href="#contact">문의</a>
   </nav>
+
 
   <main>
     <section class="hero" id="home">
       <div class="hero-inner">
-        <div class="hero-kicker">AI Content Creation Association</div>
-        <h1 class="hero-title">AI 콘텐츠<br />창작 협회</h1>
-        <div class="hero-title-en">AI Content Creation Association</div>
+        <span class="hero-keyword k1">AI 교육</span>
+        <span class="hero-keyword k2">창작 교육</span>
+        <span class="hero-keyword k3">윤리와 저작권</span>
+        <span class="hero-keyword k4">공모전</span>
+        <span class="hero-keyword k5">전시</span>
+        <span class="hero-keyword k6">세미나</span>
+        <span class="hero-keyword k7">워크숍</span>
+        <span class="hero-keyword k8">커뮤니티</span>
+        <span class="hero-keyword k9">디지털 아트워크</span>
+        <span class="hero-keyword k10">미래인재교육</span>
+
+        <div class="hero-title-wrap">
+          <h1 class="hero-title">AI 콘텐츠 창작 협회</h1>
+        </div>
       </div>
     </section>
 
@@ -1197,55 +1182,48 @@
           <div class="section-no">01 / About Association</div>
           <div><h2 class="section-title">AI 콘텐츠 창작 협회 소개</h2></div>
         </div>
-
         <div class="about-text">
-          <div class="about-lead">창의성과 기술이 조화롭게 만나는 미래 콘텐츠 생태계를 만들어갑니다.</div>
-          <div class="about-body">
-            <p>AI콘텐츠창작협회는 AI기술과 인간의 창의성이 조화롭게 공존하는 올바른 AI 미래 콘텐츠 생태계를 만들어가기 위해 설립되었습니다.</p>
-            <p>협회는 자신의 생각과 아이디어를 창의적/체계적으로 기획하고 시각적으로 표현하는 AI 활용 능력 함양에 가치를 둡니다. AI 기반 콘텐츠 창작 교육, 윤리적 활용 기준 연구, 전시/공모전/워크숍 등의 창작 네트워크 구축을 통해 책임감 있는 AI 활용 경험을 확장하고 있습니다.</p>
-            <p>이를 바탕으로 미래사회에 필요한 혁신적 사고와 표현 역량을 기르는 미래인재교육의 기반을 마련하고자 합니다.</p>
-          </div>
+          <div class="about-body">AI콘텐츠창작협회는 AI기술과 인간의 창의성이 조화롭게 공존하는 올바른 AI 미래 콘텐츠 생태계를 만들어가기 위해 설립되었습니다.
+
+협회는 자신의 생각과 아이디어를 창의적/체계적으로 기획하고 시각적으로 표현하는 AI 활용 능력 함양에 가치를 둡니다. AI 기반 콘텐츠 창작 교육, 윤리적 활용 기준 연구, 전시/공모전/워크숍 등의 창작 네트워크 구축을 통해 책임감 있는 AI 활용 경험을 확장하고 있습니다.
+
+이를 바탕으로 미래사회에 필요한 혁신적 사고와 표현 역량을 기르는 미래인재교육의 기반을 마련하고자 합니다.</div>
         </div>
       </div>
     </section>
 
     <section class="dark" id="records">
       <div class="section-inner reveal">
-        <div class="section-head">
-          <div class="section-no">02 / History</div>
-          <div><h2 class="section-title">약력</h2></div>
+        <div class="records-title-only">
+          <h2 class="section-title">약력</h2>
         </div>
 
-        <div class="history-timeline">
-          <div class="history-group open">
-            <button class="history-toggle" type="button" aria-expanded="true">
-              <span class="history-year">2025</span>
-              <span class="history-summary">설립 / 교육 개발 / 전시 / APEC / 공모대전 / 세미나</span>
-              <span class="history-icon">+</span>
+        <div class="timeline">
+          <div class="timeline-group open">
+            <button class="timeline-button" type="button" aria-expanded="true">
+              <span class="timeline-year">2025</span>
+              <span class="timeline-summary">설립 / 교육 개발 / 전시 / APEC 초청 / 공모대전 / 세미나</span>
+              <span class="timeline-icon">-</span>
             </button>
-            <div class="history-panel">
-              <div class="history-items">
-                <div class="history-item"><div class="history-label">08</div><div><div class="history-title">8월 설립</div><div class="history-desc">고유번호 503-82-88097</div></div></div>
-                <div class="history-item"><div class="history-label">Education</div><div><div class="history-title">AI 활용 지도사 교재 개발</div><div class="history-desc">교육 프로그램 개발, 강연</div></div></div>
-                <div class="history-item"><div class="history-label">Exhibition</div><div><div class="history-title">생성 AI 그림전 기획 및 전시</div><div class="history-desc">국회의원회관 전시실, 경주 황남전시관 등</div></div></div>
-                <div class="history-item"><div class="history-label">APEC</div><div><div class="history-title">APEC 정상회담 기념 생성AI 예술 작품전 초청</div><div class="history-desc">2025 APEC 정상회담 기념 생성AI 예술 작품전</div></div></div>
-                <div class="history-item"><div class="history-label">Contest</div><div><div class="history-title">제1회 대한민국 생성AI 창조 공모대전 운영위원회</div><div class="history-desc">AI 콘텐츠 공모전 운영 네트워크 참여</div></div></div>
-                <div class="history-item"><div class="history-label">Seminar</div><div><div class="history-title">AI 창작 세미나 개최</div><div class="history-desc">홍익대학교 세종캠퍼스</div></div></div>
-              </div>
+            <div class="timeline-panel">
+              <div class="timeline-item"><h3>8월 설립</h3><p>고유번호 503-82-88097</p></div>
+              <div class="timeline-item"><h3>AI 활용 지도사 교재 개발</h3><p>교육 프로그램 개발, 강연</p></div>
+              <div class="timeline-item"><h3>생성 AI 그림전 기획 및 전시</h3><p>국회의원회관 전시실, 경주 황남전시관 등</p></div>
+              <div class="timeline-item"><h3>APEC 정상회담 기념 생성AI 예술 작품전 초청</h3><p>2025 APEC 정상회담 기념 생성AI 예술 작품전</p></div>
+              <div class="timeline-item"><h3>제1회 대한민국 생성AI 창조 공모대전 운영위원회</h3><p>AI 콘텐츠 공모전 운영 네트워크 참여</p></div>
+              <div class="timeline-item"><h3>AI 창작 세미나 개최</h3><p>홍익대학교 세종캠퍼스</p></div>
             </div>
           </div>
 
-          <div class="history-group">
-            <button class="history-toggle" type="button" aria-expanded="false">
-              <span class="history-year">2026</span>
-              <span class="history-summary">공모대전 / 워크숍</span>
-              <span class="history-icon">+</span>
+          <div class="timeline-group">
+            <button class="timeline-button" type="button" aria-expanded="false">
+              <span class="timeline-year">2026</span>
+              <span class="timeline-summary">공모대전 / 워크숍</span>
+              <span class="timeline-icon">+</span>
             </button>
-            <div class="history-panel">
-              <div class="history-items">
-                <div class="history-item"><div class="history-label">Contest</div><div><div class="history-title">제2회 대한민국 생성AI 창조 공모대전 운영위원회</div><div class="history-desc">AI 창작자 발굴과 우수 콘텐츠 확산</div></div></div>
-                <div class="history-item"><div class="history-label">Workshop</div><div><div class="history-title">AI 창작 워크숍 개최</div><div class="history-desc">강남 모임 공간</div></div></div>
-              </div>
+            <div class="timeline-panel">
+              <div class="timeline-item"><h3>제2회 대한민국 생성AI 창조 공모대전 운영위원회</h3><p>AI 창작자 발굴과 우수 콘텐츠 확산</p></div>
+              <div class="timeline-item"><h3>AI 창작 워크숍 개최</h3><p>강남 모임 공간</p></div>
             </div>
           </div>
         </div>
@@ -1254,12 +1232,12 @@
 
     <section class="vision dark" id="vision">
       <div class="section-inner reveal">
-        <h2>AI와 함께 창작하는 콘텐츠,<br />함께 여는 <strong>새로운 미래</strong></h2>
+        <h2><span>AI와 함께 창작하는 콘텐츠,</span><span>함께 여는 <strong>새로운 미래</strong></span></h2>
       </div>
     </section>
 
     <section class="activities light" id="activities">
-      <div class="section-inner reveal">
+      <div class="sticky-section-head reveal">
         <div class="section-head">
           <div class="section-no">04 / Activities</div>
           <div><h2 class="section-title">활동 분야</h2></div>
@@ -1268,7 +1246,6 @@
 
       <div class="activity-sticky">
         <div>
-          <div class="activity-label">Activity Fields</div>
           <div class="activity-list">
             <div class="activity-tab active" data-index="0"><b>01</b><span>AI 교육 및 역량 강화</span></div>
             <div class="activity-tab" data-index="1"><b>02</b><span>AI 교육 프로그램 연구/개발</span></div>
@@ -1291,14 +1268,13 @@
           <div class="section-no">05 / Education</div>
           <div><h2 class="section-title">AI 교육 프로그램</h2></div>
         </div>
-
         <div class="program-list">
-          <a class="program-item" href="education-basic.html"><h3>AI 창작 입문 교육</h3><p>AI 이미지/영상 생성의 기본 원리와 프롬프트 작성, 창작 과정 기록 방법을 배웁니다.</p></a>
-          <a class="program-item" href="education-image-video.html"><h3>AI 이미지/영상 제작 교육</h3><p>AI 콘텐츠 기획, 시각화, 카드뉴스, 숏폼, 디지털 아트워크 제작 과정을 실습합니다.</p></a>
-          <a class="program-item" href="education-ethics.html"><h3>AI 윤리와 저작권</h3><p>AI 창작물의 윤리적 활용 기준, 저작권 이슈, 출처 표기와 책임 있는 사용 방식을 다룹니다.</p></a>
-          <a class="program-item" href="education-planning-workshop.html"><h3>AI 콘텐츠 기획 워크숍</h3><p>아이디어 발굴부터 콘셉트 설계, 결과물 제작까지 창작 프로젝트형 워크숍으로 운영합니다.</p></a>
-          <a class="program-item" href="education-instructor.html"><h3>AI 창작 지도사 과정</h3><p>교육 현장에서 AI 창작 수업을 기획하고 운영할 수 있는 지도 역량을 강화합니다.</p></a>
-          <a class="program-item" href="education-digital-citizenship.html"><h3>디지털 시민성 교육</h3><p>AI 시대에 필요한 미디어 리터러시, 데이터 윤리, 안전한 콘텐츠 활용 문화를 배웁니다.</p></a>
+          <a class="program-item" href="education-basic.html"><h3>AI 창작 입문 교육</h3><p>AI 이미지와 영상 생성의 기본 원리부터 프롬프트 작성, 창작 과정 기록 방법까지 배우는 입문 과정입니다.</p></a>
+<a class="program-item" href="education-image-video.html"><h3>AI 이미지/영상 제작 교육</h3><p>AI 콘텐츠 기획, 시각화, 카드뉴스, 숏폼, 디지털 아트워크 제작 과정을 실습하는 교육입니다.</p></a>
+<a class="program-item" href="education-ethics.html"><h3>AI 윤리와 저작권</h3><p>AI 창작물의 윤리적 활용 기준, 저작권 이슈, 출처 표기와 책임 있는 사용 방식을 다루는 교육입니다.</p></a>
+<a class="program-item" href="education-planning-workshop.html"><h3>AI 콘텐츠 기획 워크숍</h3><p>아이디어 발굴부터 콘셉트 설계, 결과물 제작까지 창작 프로젝트형으로 운영되는 워크숍입니다.</p></a>
+<a class="program-item" href="education-instructor.html"><h3>AI 창작 지도사 과정</h3><p>교육 현장에서 AI 창작 수업을 기획하고 운영할 수 있는 지도 역량을 강화하는 과정입니다.</p></a>
+<a class="program-item" href="education-digital-citizenship.html"><h3>디지털 시민성 교육</h3><p>AI 시대에 필요한 미디어 리터러시, 데이터 윤리, 안전한 콘텐츠 활용 문화를 배우는 교육입니다.</p></a>
         </div>
       </div>
     </section>
@@ -1330,7 +1306,7 @@
     <section class="community-sticky-section dark" id="community">
       <div class="community-wipe" id="communityWipe"></div>
 
-      <div class="section-inner reveal">
+      <div class="sticky-section-head reveal">
         <div class="section-head">
           <div class="section-no">07 / Community</div>
           <div><h2 class="section-title">커뮤니티</h2></div>
@@ -1339,7 +1315,6 @@
 
       <div class="community-sticky">
         <div>
-          <div class="activity-label">Community Program</div>
           <div class="community-menu">
             <div class="community-tab active" data-index="0"><b>01</b><span>교류</span></div>
             <div class="community-tab" data-index="1"><b>02</b><span>세미나</span></div>
@@ -1361,11 +1336,34 @@
           <div class="section-no">08 / News</div>
           <div><h2 class="section-title">소식/알림</h2></div>
         </div>
-
         <div class="news-list">
-          <a class="news-row" href="news-seminar.html"><div class="news-category">공지</div><div><div class="news-title">AI 창작 세미나 개최 안내</div><div class="news-desc">AI 창작 교육과 콘텐츠 활용 사례를 공유하는 세미나를 준비 중입니다.</div></div><div class="news-date">2026. 예정</div></a>
-          <a class="news-row" href="news-exhibition.html"><div class="news-category">보도자료</div><div><div class="news-title">생성AI 예술 작품전 초청</div><div class="news-desc">APEC 정상회담 기념 생성AI 예술 작품전에 참여했습니다.</div></div><div class="news-date">2025</div></a>
-          <a class="news-row" href="news-newsletter.html"><div class="news-category">뉴스레터</div><div><div class="news-title">AI 콘텐츠 창작 협회 활동 소식</div><div class="news-desc">교육, 전시, 공모전, 워크숍 등 협회의 주요 활동을 전합니다.</div></div><div class="news-date">2026. 예정</div></a>
+          <a class="news-row" href="news-seminar.html">
+            <div class="news-category">공지</div>
+            <div>
+              <div class="news-title">AI 창작 세미나 개최 안내</div>
+              <div class="news-desc">AI 창작 교육과 콘텐츠 활용 사례를 공유하는 세미나를 준비 중입니다.</div>
+            </div>
+            <div class="news-date">2026. 예정</div>
+            <div class="news-arrow">↗</div>
+          </a>
+<a class="news-row" href="news-exhibition.html">
+            <div class="news-category">보도자료</div>
+            <div>
+              <div class="news-title">생성AI 예술 작품전 초청</div>
+              <div class="news-desc">APEC 정상회담 기념 생성AI 예술 작품전에 참여했습니다.</div>
+            </div>
+            <div class="news-date">2025</div>
+            <div class="news-arrow">↗</div>
+          </a>
+<a class="news-row" href="news-newsletter.html">
+            <div class="news-category">뉴스레터</div>
+            <div>
+              <div class="news-title">AI 콘텐츠 창작 협회 활동 소식</div>
+              <div class="news-desc">교육, 전시, 공모전, 워크숍 등 협회의 주요 활동을 전합니다.</div>
+            </div>
+            <div class="news-date">2026. 예정</div>
+            <div class="news-arrow">↗</div>
+          </a>
         </div>
       </div>
     </section>
@@ -1374,7 +1372,7 @@
       <div class="contact-layout">
         <div>
           <div class="section-no">09 / Contact</div>
-          <h2>AI와 함께 창작하는<br />새로운 미래에 함께하세요</h2>
+          <h2><span>AI와 함께 창작하는</span><span>새로운 미래에 함께하세요</span></h2>
         </div>
 
         <div class="surface-cta">
@@ -1507,42 +1505,51 @@
       setCommunity(index);
     }
 
-    const historyButtons = document.querySelectorAll(".history-toggle");
-    historyButtons.forEach((button) => {
+    document.querySelectorAll(".timeline-button").forEach((button) => {
       button.addEventListener("click", () => {
-        const group = button.closest(".history-group");
+        const group = button.closest(".timeline-group");
         const isOpen = group.classList.toggle("open");
-        button.setAttribute("aria-expanded", isOpen ? "true" : "false");
+        button.setAttribute("aria-expanded", String(isOpen));
+        button.querySelector(".timeline-icon").textContent = isOpen ? "-" : "+";
       });
     });
 
     const revealTargets = document.querySelectorAll(".reveal");
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) entry.target.classList.add("visible");
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
       });
     }, { threshold: 0.12 });
+
     revealTargets.forEach((target) => observer.observe(target));
 
-    const heroTopNav = document.getElementById("heroTopNav");
     const rightNav = document.getElementById("rightNav");
+    const topNav = document.getElementById("topNav");
     const hero = document.getElementById("home");
     const sections = document.querySelectorAll("section[id]");
     const navLinks = document.querySelectorAll(".right-nav a, .mobile-nav a");
     const lightSections = ["about", "activities", "education", "news"];
 
-    function handleNavVisibility() {
+    function handleMenus() {
       const heroHeight = hero.offsetHeight;
-      const passedHero = window.scrollY > heroHeight * 0.76;
-      rightNav.classList.toggle("visible", passedHero);
-      heroTopNav.classList.toggle("hidden", passedHero);
+      if (window.scrollY > heroHeight * 0.78) {
+        rightNav.classList.add("visible");
+        topNav.classList.add("hide");
+      } else {
+        rightNav.classList.remove("visible");
+        topNav.classList.remove("hide");
+      }
     }
 
     function updateActiveNav() {
       let current = "";
       sections.forEach((section) => {
         const top = section.offsetTop - 160;
-        if (window.scrollY >= top) current = section.getAttribute("id");
+        if (window.scrollY >= top) {
+          current = section.getAttribute("id");
+        }
       });
 
       navLinks.forEach((link) => {
@@ -1552,23 +1559,17 @@
       rightNav.classList.toggle("light-mode", lightSections.includes(current));
     }
 
-    const overlayTargets = document.querySelectorAll(".program-item, .news-row");
-    overlayTargets.forEach((item) => {
-      item.addEventListener("mouseenter", () => rightNav.classList.add("overlay-dark"));
-      item.addEventListener("mouseleave", () => rightNav.classList.remove("overlay-dark"));
-    });
-
     window.addEventListener("scroll", () => {
       updateActivityByScroll();
       updateCommunityByScroll();
-      handleNavVisibility();
+      handleMenus();
       updateActiveNav();
     });
 
     window.addEventListener("load", () => {
       updateActivityByScroll();
       updateCommunityByScroll();
-      handleNavVisibility();
+      handleMenus();
       updateActiveNav();
     });
   </script>

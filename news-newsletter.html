@@ -7,295 +7,439 @@
   <meta name="description" content="교육, 전시, 공모전, 워크숍 등 협회의 주요 활동을 전합니다." />
   <meta property="og:title" content="AI 콘텐츠 창작 협회 활동 소식 | AI 콘텐츠 창작 협회" />
   <meta property="og:description" content="교육, 전시, 공모전, 워크숍 등 협회의 주요 활동을 전합니다." />
-  <meta property="og:type" content="article" />
+  <meta property="og:type" content="website" />
   <style>
+
+
     :root {
-      --black:#000000;
-      --deep:#050505;
-      --white:#ffffff;
-      --soft:#f5f5f7;
-      --gray:#86868b;
-      --gray2:#c7c7cc;
-      --line:rgba(255,255,255,0.16);
-      --line-dark:rgba(0,0,0,0.12);
-      --cyan:#00b8ff;
-      --max:1180px;
+      --black: #000000;
+      --deep: #050505;
+      --dark-hover: #111111;
+      --white: #ffffff;
+      --soft: #f5f5f7;
+      --gray: #86868b;
+      --gray2: #c7c7cc;
+      --line: rgba(255,255,255,0.16);
+      --line-dark: rgba(0,0,0,0.12);
+      --cyan: #00b8ff;
+      --max: 1180px;
     }
-    *{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
-    body{
-      font-family:Pretendard,-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
-      background:var(--black);
-      color:var(--white);
-      line-height:1.65;
-      word-break:keep-all;
-      overflow-x:hidden;
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: Pretendard, -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+      background: var(--black);
+      color: var(--white);
+      line-height: 1.65;
+      word-break: keep-all;
+      overflow-x: hidden;
     }
-    a{color:inherit;text-decoration:none}
-    .top-nav{
-      position:fixed;
-      left:24px;
-      right:24px;
-      top:22px;
-      z-index:9999;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:24px;
-      padding:14px 18px;
-      border-radius:999px;
-      background:rgba(0,0,0,.34);
-      border:1px solid rgba(255,255,255,.12);
-      backdrop-filter:blur(14px);
+
+    a { color: inherit; text-decoration: none; }
+
+    .top-nav {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+      z-index: 9998;
+      height: 66px;
+      padding: 0 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+      background: var(--white);
+      color: var(--black);
+      transition: opacity .3s ease, transform .3s ease;
     }
-    .top-logo{
-      color:var(--white);
-      font-size:14px;
-      font-weight:780;
-      letter-spacing:-.04em;
-      white-space:nowrap;
+
+    .top-nav.hide {
+      opacity: 0;
+      transform: translateY(-100%);
+      pointer-events: none;
     }
-    .top-links{display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
-    .top-links a{
-      color:rgba(255,255,255,.66);
-      font-size:13px;
-      letter-spacing:-.02em;
-      transition:color .25s ease;
+
+    .top-logo {
+      font-size: 16px;
+      font-weight: 840;
+      letter-spacing: -0.045em;
+      white-space: nowrap;
     }
-    .top-links a:hover{color:var(--cyan)}
-    .detail-hero{
-      min-height:76vh;
-      display:flex;
-      align-items:center;
-      padding:130px 24px 84px;
-      background:
-        radial-gradient(circle at 70% 28%, rgba(0,184,255,.1), transparent 34%),
-        var(--black);
+
+    .top-menu {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 28px;
+      font-size: 14px;
+      font-weight: 720;
+      letter-spacing: -0.035em;
+      height: 100%;
     }
-    .inner{max-width:var(--max);margin:0 auto;width:100%}
-    .kicker{
-      color:var(--cyan);
-      font-size:13px;
-      font-weight:850;
-      letter-spacing:.16em;
-      text-transform:uppercase;
-      margin-bottom:28px;
+
+    .top-menu > a,
+    .top-dropdown > a {
+      height: 66px;
+      display: flex;
+      align-items: center;
+      color: var(--black);
     }
-    .detail-title{
-      max-width:980px;
-      font-size:clamp(54px,8vw,122px);
-      line-height:.95;
-      letter-spacing:-.085em;
-      font-weight:860;
-      margin-bottom:28px;
+
+    .top-menu a:hover {
+      color: var(--cyan);
     }
-    .detail-desc{
-      max-width:760px;
-      color:var(--gray2);
-      font-size:clamp(18px,2vw,26px);
-      line-height:1.62;
-      letter-spacing:-.035em;
+
+    .top-dropdown {
+      position: relative;
+      height: 66px;
+      display: flex;
+      align-items: center;
     }
-    .content{
-      background:var(--soft);
-      color:var(--black);
-      padding:120px 24px;
+
+    .dropdown-panel {
+      position: absolute;
+      top: 66px;
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      min-width: 250px;
+      padding: 16px 0;
+      background: var(--white);
+      color: var(--black);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .22s ease, transform .22s ease;
+      display: grid;
+      gap: 0;
     }
-    .content-grid{
-      display:grid;
-      gap:0;
-      border-top:1px solid var(--line-dark);
+
+    .top-dropdown:hover .dropdown-panel,
+    .top-dropdown:focus-within .dropdown-panel {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
     }
-    .content-row{
-      display:grid;
-      grid-template-columns:.36fr 1fr;
-      gap:56px;
-      padding:42px 0;
-      border-bottom:1px solid var(--line-dark);
+
+    .dropdown-panel a {
+      display: block;
+      padding: 10px 20px;
+      font-size: 13px;
+      font-weight: 650;
+      line-height: 1.3;
+      white-space: nowrap;
     }
-    .content-no{
-      color:var(--cyan);
-      font-size:13px;
-      font-weight:850;
-      letter-spacing:.14em;
-      text-transform:uppercase;
+
+    .dropdown-panel a:hover {
+      color: var(--cyan);
+      background: rgba(0,0,0,0.03);
     }
-    .content-title{
-      font-size:clamp(30px,3.4vw,52px);
-      line-height:1.08;
-      letter-spacing:-.065em;
-      font-weight:820;
-      margin-bottom:20px;
+
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      left: 14px;
+      right: 14px;
+      bottom: 14px;
+      z-index: 9999;
+      padding: 10px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.76);
+      overflow-x: auto;
+      gap: 8px;
     }
-    .content-body{
-      color:#424245;
-      font-size:18px;
-      line-height:1.86;
+
+    .mobile-nav a {
+      flex: 0 0 auto;
+      padding: 9px 13px;
+      border-radius: 999px;
+      color: var(--gray2);
+      font-size: 12px;
+      background: rgba(255,255,255,0.06);
     }
-    .content-body ul{
-      list-style:none;
-      display:grid;
-      gap:10px;
+
+    .mobile-nav a.active {
+      background: var(--cyan);
+      color: var(--black);
     }
-    .content-body li::before{
-      content:"—";
-      color:var(--cyan);
-      margin-right:10px;
+
+
+    body {
+      background: var(--black);
+      color: var(--white);
     }
-    .related{
-      background:var(--black);
-      color:var(--white);
-      padding:110px 24px;
+
+    .detail-hero {
+      min-height: 76vh;
+      display: flex;
+      align-items: flex-end;
+      padding: 150px 24px 86px;
+      background: var(--black);
     }
-    .related-grid{
-      display:grid;
-      grid-template-columns:.36fr 1fr;
-      gap:56px;
-      align-items:start;
+
+    .detail-inner {
+      width: 100%;
+      max-width: var(--max);
+      margin: 0 auto;
     }
-    .related-links{
-      display:grid;
-      border-top:1px solid var(--line);
+
+    .eyebrow {
+      color: var(--cyan);
+      font-size: 13px;
+      font-weight: 850;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 26px;
     }
-    .related-links a{
-      display:flex;
-      justify-content:space-between;
-      gap:24px;
-      padding:24px 0;
-      border-bottom:1px solid var(--line);
-      color:var(--white);
-      font-size:22px;
-      letter-spacing:-.045em;
-      font-weight:760;
-      transition:color .25s ease,padding .25s ease;
+
+    .detail-title {
+      font-size: clamp(50px, 7.8vw, 118px);
+      line-height: 0.98;
+      letter-spacing: -0.078em;
+      font-weight: 860;
+      max-width: 1050px;
+      margin-bottom: 30px;
     }
-    .related-links a::after{content:"↗";font-size:16px;color:var(--cyan)}
-    .related-links a:hover{color:var(--cyan);padding-left:18px}
-    .home-link{
-      margin-top:34px;
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      color:var(--cyan);
-      font-size:15px;
-      font-weight:760;
+
+    .detail-desc {
+      color: var(--gray2);
+      font-size: clamp(18px, 2vw, 28px);
+      line-height: 1.55;
+      max-width: 850px;
     }
-    .footer{
-      background:var(--black);
-      color:var(--gray2);
-      border-top:1px solid var(--line);
-      padding:14px 24px;
-      font-size:12px;
+
+    .detail-body {
+      background: var(--soft);
+      color: var(--black);
+      padding: 120px 24px;
     }
-    .footer-inner{
-      max-width:var(--max);
-      margin:0 auto;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:24px;
+
+    .content-list {
+      max-width: var(--max);
+      margin: 0 auto;
+      border-top: 1px solid var(--line-dark);
     }
-    .footer a{color:var(--gray2)}
-    .footer a:hover{color:var(--cyan)}
-    @media(max-width:900px){
-      .top-nav{left:14px;right:14px;top:14px;border-radius:24px;align-items:flex-start}
-      .top-links{gap:10px}
-      .top-links a{font-size:12px}
-      .detail-hero{min-height:70vh;padding:120px 20px 70px}
-      .content,.related{padding:86px 20px}
-      .content-row,.related-grid{grid-template-columns:1fr;gap:18px}
-      .footer-inner{flex-direction:column;align-items:flex-start}
+
+    .content-section {
+      display: grid;
+      grid-template-columns: 0.38fr 1fr;
+      gap: 56px;
+      padding: 42px 0;
+      border-bottom: 1px solid var(--line-dark);
     }
-    @media(max-width:640px){
-      .top-nav{position:absolute}
-      .detail-title{font-size:52px}
-      .detail-desc{font-size:18px}
-      .content-title{font-size:34px}
-      .related-links a{font-size:19px}
+
+    .content-section h2 {
+      color: var(--cyan);
+      font-size: 14px;
+      font-weight: 850;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
     }
-    @media(prefers-reduced-motion:reduce){
-      html{scroll-behavior:auto}
-      *,*::before,*::after{
-        animation-duration:.001ms!important;
-        animation-iteration-count:1!important;
-        transition-duration:.001ms!important;
+
+    .content-section p,
+    .content-section li {
+      color: #424245;
+      font-size: 20px;
+      line-height: 1.85;
+    }
+
+    .content-section ul {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .content-section li::before {
+      content: "—";
+      margin-right: 10px;
+      color: var(--black);
+    }
+
+    .related {
+      background: var(--black);
+      color: var(--white);
+      padding: 90px 24px;
+    }
+
+    .related-grid {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 0.36fr 1fr;
+      gap: 56px;
+      align-items: start;
+    }
+
+    .related h2 {
+      font-size: clamp(34px, 4vw, 58px);
+      line-height: 1;
+      letter-spacing: -0.065em;
+    }
+
+    .related-links {
+      display: grid;
+      border-top: 1px solid var(--line);
+    }
+
+    .related-links a {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--line);
+      color: var(--white);
+      font-size: 20px;
+      font-weight: 760;
+      letter-spacing: -0.04em;
+    }
+
+    .related-links a::after {
+      content: "↗";
+      color: var(--cyan);
+    }
+
+    .footer {
+      background: var(--black);
+      color: var(--gray2);
+      border-top: 1px solid var(--line);
+      padding: 14px 24px;
+      font-size: 12px;
+    }
+
+    .footer-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .footer-contact {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .footer strong { color: var(--white); font-size: 12px; }
+    .footer a { color: var(--gray2); transition: color 0.25s ease; }
+    .footer a:hover { color: var(--cyan); }
+
+    @media (max-width: 1020px) {
+      .top-menu { display: none; }
+      .mobile-nav { display: flex; }
+      .content-section,
+      .related-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .top-nav { padding: 0 18px; height: 58px; }
+      .top-logo { font-size: 14px; }
+      .detail-hero { padding: 118px 18px 68px; }
+      .detail-title { font-size: 48px; }
+      .detail-body { padding: 80px 18px; }
+      .content-section p,
+      .content-section li { font-size: 17px; }
+      .footer { padding-bottom: 86px; }
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
       }
     }
 
   </style>
 </head>
 <body>
-  <nav class="top-nav" aria-label="상세 페이지 상단 메뉴">
+
+  <header class="top-nav" id="topNav">
     <a class="top-logo" href="index.html">AI 콘텐츠 창작 협회</a>
-    <div class="top-links">
-      <a href="index.html#education">Education</a>
-      <a href="index.html#news">News</a>
-      <a href="index.html#contact">Contact</a>
-      <a href="index.html">Home</a>
-    </div>
+    <nav class="top-menu" aria-label="상단 메뉴">
+      <a href="index.html#about">협회 소개</a>
+      <a href="index.html#records">약력</a>
+      <a href="index.html#activities">활동 분야</a>
+      <div class="top-dropdown">
+        <a href="index.html#education">교육</a>
+        <div class="dropdown-panel">
+          <a href="education-basic.html">AI 창작 입문 교육</a>
+<a href="education-image-video.html">AI 이미지/영상 제작 교육</a>
+<a href="education-ethics.html">AI 윤리와 저작권</a>
+<a href="education-planning-workshop.html">AI 콘텐츠 기획 워크숍</a>
+<a href="education-instructor.html">AI 창작 지도사 과정</a>
+<a href="education-digital-citizenship.html">디지털 시민성 교육</a>
+        </div>
+      </div>
+      <a href="index.html#creation">창작</a>
+      <a href="index.html#community">커뮤니티</a>
+      <div class="top-dropdown">
+        <a href="index.html#news">소식/알림</a>
+        <div class="dropdown-panel">
+          <a href="news-seminar.html">AI 창작 세미나 개최 안내</a>
+<a href="news-exhibition.html">생성AI 예술 작품전 초청</a>
+<a href="news-newsletter.html">AI 콘텐츠 창작 협회 활동 소식</a>
+        </div>
+      </div>
+      <a href="index.html#contact">문의</a>
+    </nav>
+  </header>
+
+  <nav class="mobile-nav" aria-label="모바일 네비게이션">
+    <a href="index.html">홈</a>
+    <a href="index.html#education">교육</a>
+    <a href="index.html#news">소식</a>
+    <a href="index.html#contact">문의</a>
   </nav>
 
   <main>
     <section class="detail-hero">
-      <div class="inner">
-        <div class="kicker">News / Newsletter</div>
+      <div class="detail-inner">
+        <div class="eyebrow">News / Notice</div>
         <h1 class="detail-title">AI 콘텐츠 창작 협회 활동 소식</h1>
         <p class="detail-desc">교육, 전시, 공모전, 워크숍 등 협회의 주요 활동을 전합니다.</p>
       </div>
     </section>
 
-    <section class="content">
-      <div class="inner">
-        <div class="content-grid">
-          <div class="content-row">
-            <div class="content-no">01 / Newsletter</div>
-            <div>
-              <h2 class="content-title">뉴스레터</h2>
-              <div class="content-body">
-                <p>AI 콘텐츠 창작 협회는 교육, 전시, 공모전, 워크숍 등 다양한 활동을 통해 AI 콘텐츠 창작 생태계를 확장하고 있습니다.</p>
-              </div>
-            </div>
-          </div>
-          <div class="content-row">
-            <div class="content-no">02 / Topics</div>
-            <div>
-              <h2 class="content-title">주요 소식</h2>
-              <div class="content-body">
-                <p>주요 소식은 AI 교육 프로그램, 생성 AI 그림전, AI 창작 세미나, 공모전 운영, 워크숍 개최 등으로 구성됩니다.</p>
-              </div>
-            </div>
-          </div>
-          <div class="content-row">
-            <div class="content-no">03 / Subscribe</div>
-            <div>
-              <h2 class="content-title">소식 받아보기</h2>
-              <div class="content-body">
-                <p>협회 소식을 받아보고 싶은 분들은 문의 페이지를 통해 뉴스레터 수신을 요청할 수 있습니다.</p>
-              </div>
-            </div>
-          </div>
-          <div class="content-row">
-            <div class="content-no">04 / Contact</div>
-            <div>
-              <h2 class="content-title">문의</h2>
-              <div class="content-body">
-                <p>협회 활동, 교육, 전시, 세미나 관련 문의는 이메일을 통해 접수합니다.</p>
-              </div>
-            </div>
-          </div>
-        </div>
+    <section class="detail-body">
+      <div class="content-list">
+        <section class="content-section">
+          <h2>01 / Newsletter</h2>
+          <div><p>AI 콘텐츠 창작 협회는 교육, 전시, 공모전, 워크숍 등 다양한 활동을 통해 AI 콘텐츠 창작 생태계를 확장하고 있습니다.</p></div>
+        </section>
+        <section class="content-section">
+          <h2>02 / Topics</h2>
+          <div><p>주요 소식은 AI 교육 프로그램, 생성 AI 그림전, AI 창작 세미나, 공모전 운영, 워크숍 개최 등으로 구성됩니다.</p></div>
+        </section>
+        <section class="content-section">
+          <h2>03 / Subscribe</h2>
+          <div><p>협회 소식을 받아보고 싶은 분들은 문의 페이지를 통해 뉴스레터 수신을 요청할 수 있습니다.</p></div>
+        </section>
+        <section class="content-section">
+          <h2>04 / Contact</h2>
+          <div><p>협회 활동, 교육, 전시, 세미나 관련 문의는 이메일을 통해 접수합니다.</p></div>
+        </section>
       </div>
     </section>
 
     <section class="related">
-      <div class="inner related-grid">
-        <div>
-          <div class="kicker">Related Pages</div>
-          <a class="home-link" href="index.html">← Back to Home</a>
-        </div>
+      <div class="related-grid">
+        <h2>Related Pages</h2>
         <div class="related-links">
           <a href="news-seminar.html">AI 창작 세미나 개최 안내</a>
-          <a href="news-exhibition.html">생성AI 예술 작품전 초청</a>
+<a href="news-exhibition.html">생성AI 예술 작품전 초청</a>
+          <a href="index.html">홈으로 돌아가기</a>
         </div>
       </div>
     </section>
@@ -303,7 +447,14 @@
 
   <footer class="footer">
     <div class="footer-inner">
-      <div>Contact / <a href="mailto:YOUR_EMAIL">YOUR_EMAIL</a> / YOUR_PHONE / YOUR_ADDRESS</div>
+      <div class="footer-contact">
+        <strong>Contact</strong>
+        <span>이메일: <a href="mailto:YOUR_EMAIL">YOUR_EMAIL</a></span>
+        <span>/</span>
+        <span>연락처: YOUR_PHONE</span>
+        <span>/</span>
+        <span>주소: YOUR_ADDRESS</span>
+      </div>
       <div>© 2026 AI Content Creation Association.</div>
     </div>
   </footer>
